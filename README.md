@@ -1,3 +1,11 @@
 # PyHelper
+This module a set of helper functions for OpenCV, ImageProcessing, CV and Python.
 
-[!im](showcase/drawStar.png)
+## Draw Functions
+### Draw Star and Triangle
+
+~~~python
+
+~~~
+
+![im](showcase/drawStar.png)
