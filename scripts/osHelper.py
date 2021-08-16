@@ -7,7 +7,6 @@
 # Add preprocessors
 #########################################################
 import os
-from posixpath import dirname
 import sys
 
 #########################################################
@@ -54,8 +53,7 @@ def getSpecificChildDir(__file__, dirName):
         if TMP_DEL in x:
             if x.split(TMP_DEL)[-1] == dirName:
                 return x.replace(TMP_DEL, PTH_DEL)
-
-    return None  # In case not found
+    return None
 
 
 # print('\n\n\n')
