@@ -1,25 +1,27 @@
 import cv2
-import scripts.drwHelper as drw
+import scripts.drawHelper as drw
 import scripts.osHelper as osh
+from scripts.colorHelper import *
 
 dir = osh.getRoot(__file__)
-
 im = cv2.imread(dir+r'/media/im.png')
+
 h, w = im.shape[:2]
-drw.drawLine(im, (0, 0), (w//2, h//2), hasArrow=True)
+f, ox, oh, cx, cy = 2.5, w/12, h/4, w/2, h/2
+rc = randomColor
 
-f = 2.5
-drw.drawPoly(im, [(w/f, h/f), (w-w/f, h/2), (w/2, h-h/f)])
+drw.drawLine(im, (cx-ox, cy-oh), (cx+ox, cy+oh), color=rc(), hasArrow=True)
+drw.drawLine(im, (cx-ox, cy-oh+oh/2), (cx+ox, cy+oh+oh/2), color=rc(), hasArrow=False)
+drw.drawPoly(im, [(w/f, h/f), (w-w/f, h/2), (w/2, h-h/f)], color=rc())
 
-drw.drawStar(im, (w/4, h/4), w/8, color=(200, 100, 220))
-drw.drawStar(im, (w-w/4, h/4), w/8, color=(150, 100, 220), points=7)
+drw.drawStar(im, (ox, oh), oh/2, color=rc(), rotation=45)
+drw.drawStar(im, (w-ox, oh), oh/2, color=rc(), points=7)
 
-drw.drawStar(im, (w/4, h-h/4), w/8, color=(41, 100, 220), points=9)
-drw.drawStar(im, (w-w/4, h-h/4), w/8,
-             color=(41, 200, 50), points=11, thickness=15)
+drw.drawStar(im, (ox, h-oh), oh/2, color=rc(), points=9)
+drw.drawStar(im, (w-ox, h-oh), oh/2, color=rc(), points=11, thickness=15)
 
-drw.drawTriangle(im, (w/4, h/2), w/12, color=(50, 10, 220), thickness=20)
-drw.drawTriangle(im, (w-w/4, h/2), w/12, color=(220, 50, 100), rotation=45)
+drw.drawTriangle(im, (ox, h/2), oh/2, color=rc(), thickness=20)
+drw.drawTriangle(im, (w-ox, h/2), oh/2, color=rc(), rotation=45)
 
 # drawMarker(im,(w//2,h//2))
 

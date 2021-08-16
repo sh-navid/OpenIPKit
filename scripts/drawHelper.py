@@ -113,20 +113,3 @@ def drawCurve(pt1, pt2, pt3, pt4):
     # https://en.wikipedia.org/wiki/B%C3%A9zier_curve
     # For now just draw over 3 points
     pass
-
-
-#########################################################
-# Tests
-#########################################################
-if __name__ == '__main__':
-    print('unit tests')
-    dir = osh.getRoot(__file__)
-
-    im = cv2.imread(dir+r'/media/im.png')
-    h, w = im.shape[:2]
-
-    # drawMarker(im,(w//2,h//2))
-
-    cv2.imshow('Test', im)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
