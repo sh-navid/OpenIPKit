@@ -26,6 +26,8 @@ DEFAULT_MARKER_SIZE = 5
 #########################################################
 
 # Fixme: this is buggy; fix it
+
+
 def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerType=DEFAULT_MARKER, markerSize=DEFAULT_MARKER_SIZE):
     cv2.drawMarker(
         im,
@@ -36,6 +38,7 @@ def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerTy
         markerSize=markerSize,
         line_type=cv2.LINE_AA
     )
+
 
 def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, deg = 360/points, rotation
@@ -50,6 +53,7 @@ def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, color=DEFAUL
     for i in range(0, points):
         drawLine(im, last, pts[i], color=color, thickness=thickness)
         last = pts[i]
+
 
 def drawStar(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, deg = 360/points, rotation
