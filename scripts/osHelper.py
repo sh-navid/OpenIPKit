@@ -14,13 +14,13 @@ import sys
 # Functions
 #########################################################
 
-TEMP_DELIMITER = '|'
-PATH_DELIMITER='\\'
+TMP_DEL = '×'
+PTH_DEL = '\\'
 
 
 def cleanPath(pth):
-    pth = pth.replace('/', TEMP_DELIMITER)
-    pth = pth.replace('\\', TEMP_DELIMITER)
+    pth = pth.replace('/', TMP_DEL)
+    pth = pth.replace('\\', TMP_DEL)
     return pth
 
 
@@ -39,20 +39,22 @@ def getRootByName(__file__, dirName):
 def getSpecificParentDir(__file__, dirName):
     pth = cleanPath(getPath(__file__))
     dirName = cleanPath(dirName)
-    candidate = f'{TEMP_DELIMITER}{dirName}{TEMP_DELIMITER}'
+    candidate = f'{TMP_DEL}{dirName}{TMP_DEL}'
     if candidate in pth:
-        pth = (pth.split(candidate)[0]+TEMP_DELIMITER +
-               dirName).replace(TEMP_DELIMITER+TEMP_DELIMITER, TEMP_DELIMITER)
-        pth=pth.replace(TEMP_DELIMITER,PATH_DELIMITER)
-        return pth
+        pth = (pth.split(candidate)[0]+TMP_DEL +
+               dirName).replace(TMP_DEL*2, TMP_DEL)
+        return pth.replace(TMP_DEL, PTH_DEL)
     return None
 
 
 def getSpecificChildDir(__file__, dirName):
-    pth = getPath(__file__)
-    for x in [x[0] for x in os.walk(pth)]:
-        if dirName in x:  # Needs improvement cause of different cases
-            return (pth.split(dirName)[0]+'\\'+dirName).replace('\\\\', '\\')
+    for x in [x[0] for x in os.walk(getPath(__file__))]:
+        dirName = cleanPath(dirName)
+        x = cleanPath(x)
+        if TMP_DEL in x:
+            if x.split(TMP_DEL)[-1] == dirName:
+                return x.replace(TMP_DEL, PTH_DEL)
+
     return None  # In case not found
 
 
