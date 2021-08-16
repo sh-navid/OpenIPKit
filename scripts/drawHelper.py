@@ -46,7 +46,7 @@ def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, color=DEFAUL
         pos = (center[0]+x, center[1]+y)
         pts.append(pos)
         deg += off
-    last = pts[0]
+    last = pts[points-1]
     for i in range(0, points):
         drawLine(im, last, pts[i], color=color, thickness=thickness)
         last = pts[i]
