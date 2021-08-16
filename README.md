@@ -15,4 +15,4 @@ drawTriangle(im, (x,y), rad, color=(50, 10, 220), thickness=20)
 drawTriangle(im, (x,y), rad, color=(220, 50, 100), rotation=45)
 ~~~
 
-<img src='showcase/drawStar.png' width='300px'/>
+<center><img src='showcase/drawStar.png' width='300px'/></center>
