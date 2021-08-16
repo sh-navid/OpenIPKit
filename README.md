@@ -15,7 +15,7 @@ im = cv2.imread(dir+r'/media/im.png')
 
 h, w = im.shape[:2]
 f, ox, oh, cx, cy = 2.5, w/12, h/4, w/2, h/2
-rc = randomColor
+rc = randomDarkColors
 
 drw.drawLine(im, (cx-ox, cy-oh), (cx+ox, cy+oh), color=rc(), hasArrow=True)
 drw.drawLine(im, (cx-ox, cy-oh+oh/2), (cx+ox, cy+oh+oh/2), color=rc(), hasArrow=False)

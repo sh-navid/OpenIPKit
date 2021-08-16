@@ -11,7 +11,7 @@ import cv2
 import math
 import numpy as np
 import scripts.osHelper as osh
-import scripts.arrHelper as arh
+import scripts.arrayHelper as arh
 
 #########################################################
 # Constants
@@ -37,6 +37,19 @@ def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerTy
         line_type=cv2.LINE_AA
     )
 
+def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+    off, deg = 360/points, rotation
+    pts = []
+    for i in range(0, points):
+        x = radius*math.cos(math.radians(deg))
+        y = radius*math.sin(math.radians(deg))
+        pos = (center[0]+x, center[1]+y)
+        pts.append(pos)
+        deg += off
+    last = pts[0]
+    for i in range(0, points):
+        drawLine(im, last, pts[i], color=color, thickness=thickness)
+        last = pts[i]
 
 def drawStar(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, deg = 360/points, rotation
