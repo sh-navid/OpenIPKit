@@ -51,8 +51,7 @@ def drawStar(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, th
         idx += points-2
         if idx > points-1:
             idx -= points
-        drawLine(im, (int(last[0]), int(last[1])), (int(
-            pts[idx][0]), int(pts[idx][1])), color=color, thickness=thickness)
+        drawLine(im, last, pts[idx], color=color, thickness=thickness)
         last = pts[idx]
 
 
@@ -68,6 +67,8 @@ def drawPoly(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
 
 
 def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasArrow=False):
+    pt1 = [int(x) for x in pt1]
+    pt2 = [int(x) for x in pt2]
     fn = cv2.line if not hasArrow else cv2.arrowedLine
     type = 'lineType' if not hasArrow else 'line_type'
     eval(f'''fn(
