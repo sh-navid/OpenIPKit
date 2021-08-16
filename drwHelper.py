@@ -37,8 +37,7 @@ def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerTy
     )
 
 
-def drawStar(im, center, radius,rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    points = 5
+def drawStar(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, deg = 360/points, rotation
     pts = []
     for i in range(0, points):
@@ -47,17 +46,14 @@ def drawStar(im, center, radius,rotation=-90, color=DEFAULT_COLOR, thickness=DEF
         pos = (center[0]+x, center[1]+y)
         pts.append(pos)
         deg += off
-
-        print(pos)
-        #drawMarker(im, (int(pos[0]),int(pos[1])))
-    last = pts[0]
-    k=0
+    last, idx = pts[0], 0
     for i in range(0, points):
-        k +=points-2
-        if k > points-1:
-            k -= points
-        drawLine(im, (int(last[0]), int(last[1])), (int(pts[k][0]), int(pts[k][1])), color=color)
-        last = pts[k]
+        idx += points-2
+        if idx > points-1:
+            idx -= points
+        drawLine(im, (int(last[0]), int(last[1])), (int(
+            pts[idx][0]), int(pts[idx][1])), color=color, thickness=thickness)
+        last = pts[idx]
 
 
 def drawPoly(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
@@ -88,8 +84,9 @@ def drawCircle():
     pass
 
 
-def drawTriangle():
-    pass
+def drawTriangle(im, center, radius, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+    drawStar(im, center, radius, points=3, rotation=rotation,
+             color=color, thickness=thickness)
 
 
 def drawRect():
@@ -121,7 +118,15 @@ if __name__ == '__main__':
 
     drawLine(im, (0, 0), (w//2, h//2), hasArrow=True)
     drawPoly(im, [(0, 0), (w, h//2), (w//2, h)])
-    drawStar(im, (w//2, h//2), w//4)
+
+    drawStar(im, (w//4, h//4), w//8, color=(200, 100, 220))
+    drawStar(im, (w-w//4, h//4), w//8, color=(150, 100, 220), points=7)
+
+    drawStar(im, (w//4, h-h//4), w//8, color=(41, 100, 220), points=9)
+    drawStar(im, (w-w//4, h-h//4), w//8, color=(41, 200, 50), points=21)
+
+    drawTriangle(im, (w//4, h//2), w//8, color=(50, 10, 220))
+    drawTriangle(im, (w-w//4, h//2), w//8, color=(220, 50, 100), rotation=45)
 
     cv2.imshow('Test', im)
     cv2.waitKey(0)
