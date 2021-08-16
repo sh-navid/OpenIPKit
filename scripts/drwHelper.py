@@ -10,7 +10,8 @@ I want to add more functionality to opencv
 import cv2
 import math
 import numpy as np
-import osHelper as osh
+import scripts.osHelper as osh
+import scripts.arrHelper as arh
 
 #########################################################
 # Constants
@@ -67,14 +68,12 @@ def drawPoly(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
 
 
 def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasArrow=False):
-    pt1 = [int(x) for x in pt1]
-    pt2 = [int(x) for x in pt2]
     fn = cv2.line if not hasArrow else cv2.arrowedLine
     type = 'lineType' if not hasArrow else 'line_type'
     eval(f'''fn(
         im,
-        pt1={pt1},
-        pt2={pt2},
+        pt1={arh.toInt1dArray(pt1)},
+        pt2={arh.toInt1dArray(pt2)},
         color={color},
         thickness={int(thickness)},
         {type}=cv2.LINE_AA
@@ -90,11 +89,19 @@ def drawTriangle(im, center, radius, rotation=-90, color=DEFAULT_COLOR, thicknes
              color=color, thickness=thickness)
 
 
-def drawRect():
+def drawRectFromCenter():
     pass
 
 
-def drawSquare():
+def drawRectFromTopLeft():
+    pass
+
+
+def drawSquareFromCenter():
+    pass
+
+
+def drawSquareFromTopLeft():
     pass
 
 
@@ -104,6 +111,7 @@ def drawOval():
 
 def drawCurve(pt1, pt2, pt3, pt4):
     # https://en.wikipedia.org/wiki/B%C3%A9zier_curve
+    # For now just draw over 3 points
     pass
 
 
@@ -117,17 +125,7 @@ if __name__ == '__main__':
     im = cv2.imread(dir+r'/media/im.png')
     h, w = im.shape[:2]
 
-    # drawLine(im, (0, 0), (w//2, h//2), hasArrow=True)
-    # drawPoly(im, [(0, 0), (w, h//2), (w//2, h)])
-
-    drawStar(im, (w//4, h//4), w//8, color=(200, 100, 220))
-    drawStar(im, (w-w//4, h//4), w//8, color=(150, 100, 220), points=7)
-
-    drawStar(im, (w//4, h-h//4), w//8, color=(41, 100, 220), points=9)
-    drawStar(im, (w-w//4, h-h//4), w//8, color=(41, 200, 50), points=11,thickness=15)
-
-    drawTriangle(im, (w//4, h//2), w//12, color=(50, 10, 220),thickness=20)
-    drawTriangle(im, (w-w//4, h//2), w//12, color=(220, 50, 100), rotation=45)
+    # drawMarker(im,(w//2,h//2))
 
     cv2.imshow('Test', im)
     cv2.waitKey(0)
