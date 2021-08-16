@@ -18,8 +18,8 @@ def getPath(__file__):
     return os.path.abspath(os.path.dirname(__file__))
 
 
-def getRoot():
-    return sys.path[1]
+def listPath():
+    return sys.path
 
 
 def getSpecificParentDir(__file__, dirName):
@@ -37,10 +37,11 @@ def getSpecificChildDir(__file__, dirName):
     for x in [x[0] for x in os.walk(pth)]:
         if dirName in x:  # Needs improvement cause of different cases
             return (pth.split(dirName)[0]+'\\'+dirName).replace('\\\\', '\\')
-    return None  # Not found
+    return None  # In case not found
 
-
-print(getRoot())
+print('\n\n\n')
+print(listPath())
+print(getPath(__file__))
 print(getRootByName(__file__, 'PyHelper'))
 print(getSpecificParentDir(__file__, 'PyHelper'))
 print(getSpecificParentDir(__file__, 'scripts'))

@@ -3,7 +3,7 @@ import scripts.drawHelper as drw
 import scripts.osHelper as osh
 from scripts.colorHelper import *
 
-dir = osh.getRoot(__file__)
+dir = osh.getPath(__file__)
 im = cv2.imread(dir+r'/media/im.png')
 
 h, w = im.shape[:2]
