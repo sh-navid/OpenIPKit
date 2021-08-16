@@ -53,11 +53,10 @@ def drawStar(im, center, radius,rotation=-90, color=DEFAULT_COLOR, thickness=DEF
     last = pts[0]
     k=0
     for i in range(0, points):
-        k +=3
-        if k > 4:
-            k -= 5
-        drawLine(im, (int(last[0]), int(last[1])), (int(pts[k][0]), int(
-            pts[k][1])), color=(22, 100, 200))
+        k +=points-2
+        if k > points-1:
+            k -= points
+        drawLine(im, (int(last[0]), int(last[1])), (int(pts[k][0]), int(pts[k][1])), color=color)
         last = pts[k]
 
 
