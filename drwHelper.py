@@ -20,15 +20,15 @@ DEFAULT_TICKNESS = 5
 #########################################################
 
 
-def line(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasArrow=False):
+def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasArrow=False):
     fn = cv2.line if not hasArrow else cv2.arrowedLine
     type = 'lineType' if not hasArrow else 'line_type'
-    return eval(f'''{fn}(
-        {im},
-        pt1={pt1},
-        pt2={pt2},
-        color={color},
-        thickness={thickness},
+    return eval(f'''fn(
+        im,
+        pt1=pt1,
+        pt2=pt2,
+        color=color,
+        thickness=thickness,
         {type}=cv2.LINE_AA
     )''')
 
@@ -45,4 +45,12 @@ def drawCurve(pt1, pt2, pt3, pt4):
 if __name__ == '__main__':
     print('unit tests')
     dir = osh.getRoot(__file__)
-    print(dir)
+
+    im = cv2.imread(dir+r'/media/im.png')
+    h, w = im.shape[:2]
+
+    im = drawLine(im, (0, 0), (w//2, h//2))
+    
+    cv2.imshow('Test',im)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
