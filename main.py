@@ -17,6 +17,9 @@ drw.drawPoly(im, [(w/f, h/f), (w-w/f, h/2), (w/2, h-h/f)], color=rc())
 drw.drawStar(im, (ox, oh), oh/2, color=rc(), rotation=45)
 drw.drawStar(im, (w-ox, oh), oh/2, color=rc(), points=7)
 
+drw.drawStar(im, (ox*3, oh), oh/2, color=rc(), rotation=65,thickness=2)
+drw.drawStar(im, (w-ox*3, oh), oh/2, color=rc(), points=8,rotation=25)
+
 drw.drawStar(im, (ox, h-oh), oh/2, color=rc(), points=9)
 drw.drawStar(im, (w-ox, h-oh), oh/2, color=rc(), points=11, thickness=15)
 
