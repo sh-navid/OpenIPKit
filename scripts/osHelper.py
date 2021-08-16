@@ -56,10 +56,10 @@ def getSpecificChildDir(__file__, dirName):
     return None
 
 
-# print('\n\n\n')
-# print(listPath())
-print('\ngetPath:              ', getPath(__file__))
-print('\ngetRootByName:        ', getRootByName(__file__, 'PyHelper'))
-print('\ngetSpecificParentDir: ', getSpecificParentDir(__file__, 'PyHelper'))
-print('\ngetSpecificParentDir: ', getSpecificParentDir(__file__, 'scripts'))
-print('\ngetSpecificChildDir:  ', getSpecificChildDir(__file__, 'sub1'))
+if __name__=='__main__':
+    print(listPath())
+    print('\ngetPath:              ', getPath(__file__))
+    print('\ngetRootByName:        ', getRootByName(__file__, 'PyHelper'))
+    print('\ngetSpecificParentDir: ', getSpecificParentDir(__file__, 'PyHelper'))
+    print('\ngetSpecificParentDir: ', getSpecificParentDir(__file__, 'scripts'))
+    print('\ngetSpecificChildDir:  ', getSpecificChildDir(__file__, 'sub1'))
