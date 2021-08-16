@@ -116,17 +116,17 @@ if __name__ == '__main__':
     im = cv2.imread(dir+r'/media/im.png')
     h, w = im.shape[:2]
 
-    drawLine(im, (0, 0), (w//2, h//2), hasArrow=True)
-    drawPoly(im, [(0, 0), (w, h//2), (w//2, h)])
+    # drawLine(im, (0, 0), (w//2, h//2), hasArrow=True)
+    # drawPoly(im, [(0, 0), (w, h//2), (w//2, h)])
 
     drawStar(im, (w//4, h//4), w//8, color=(200, 100, 220))
     drawStar(im, (w-w//4, h//4), w//8, color=(150, 100, 220), points=7)
 
     drawStar(im, (w//4, h-h//4), w//8, color=(41, 100, 220), points=9)
-    drawStar(im, (w-w//4, h-h//4), w//8, color=(41, 200, 50), points=21)
+    drawStar(im, (w-w//4, h-h//4), w//8, color=(41, 200, 50), points=11,thickness=15)
 
-    drawTriangle(im, (w//4, h//2), w//8, color=(50, 10, 220))
-    drawTriangle(im, (w-w//4, h//2), w//8, color=(220, 50, 100), rotation=45)
+    drawTriangle(im, (w//4, h//2), w//12, color=(50, 10, 220),thickness=20)
+    drawTriangle(im, (w-w//4, h//2), w//12, color=(220, 50, 100), rotation=45)
 
     cv2.imshow('Test', im)
     cv2.waitKey(0)
