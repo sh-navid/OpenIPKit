@@ -14,6 +14,6 @@ drawStar(im, (x,y), rad, color=(41, 200, 50), points=11,thickness=15)
 drawTriangle(im, (x,y), rad, color=(50, 10, 220), thickness=20)
 drawTriangle(im, (x,y), rad, color=(220, 50, 100), rotation=45)
 ~~~
-<pre style='text-align:center'>
+<pre style='text-align:center;width:100%'>
 <img src='showcase/drawStar.png' width='300px'/>
 </pre>
