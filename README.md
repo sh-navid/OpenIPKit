@@ -8,4 +8,4 @@ This module a set of helper functions for OpenCV, ImageProcessing, CV and Python
 
 ~~~
 
-![im](showcase/drawStar.png)
+<img src='showcase/drawStar.png' width='300px'/>
