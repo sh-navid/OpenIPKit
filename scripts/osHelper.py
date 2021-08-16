@@ -8,6 +8,7 @@
 #########################################################
 import os
 import sys
+import pkg_resources
 
 #########################################################
 # Functions
@@ -26,6 +27,8 @@ def cleanPath(pth):
 def listPath():
     return sys.path
 
+def getPackagePath(packageName):
+    return pkg_resources.get_distribution(packageName).location
 
 def getPath(__file__):
     return os.path.abspath(os.path.dirname(__file__))
@@ -63,3 +66,4 @@ if __name__=='__main__':
     print('\ngetSpecificParentDir: ', getSpecificParentDir(__file__, 'PyHelper'))
     print('\ngetSpecificParentDir: ', getSpecificParentDir(__file__, 'scripts'))
     print('\ngetSpecificChildDir:  ', getSpecificChildDir(__file__, 'sub1'))
+    print('\ngetPackagePath:       ', getPackagePath('opencv-python'))
