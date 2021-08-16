@@ -18,3 +18,6 @@ drw.drawTriangle(im, (x,y), rad, color=(220, 50, 100), rotation=45)
 ~~~
 
 ![im](showcase/drawStar2.png)
+
+___
+This library is licensed by MIT. But used modules, including OpenCV and Python, may have other licenses. Then; To use, consider the licenses of those modules.
