@@ -1,7 +1,9 @@
 #########################################################
 # Author: sh-navid
 #########################################################
-
+'''
+I want to add more functionality to opencv
+'''
 #########################################################
 # Add preprocessors
 #########################################################
@@ -33,6 +35,10 @@ def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerTy
         line_type=cv2.LINE_AA
     )
 
+EXTRA_MARKER_5_POINTS_STAR=1001
+def drawExtraMarkers():
+    pass
+
 
 def drawPoly(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     cv2.polylines(
@@ -53,7 +59,7 @@ def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasA
         pt1=pt1,
         pt2=pt2,
         color=color,
-        thickness=thickness,
+        thickness={int(thickness)},
         {type}=cv2.LINE_AA
     )''')
 
@@ -61,12 +67,26 @@ def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasA
 def drawCircle():
     pass
 
+def drawTriangle():
+    pass
+
+def drawRect():
+    pass
+
+def drawSquare():
+    pass
+
+def drawOval():
+    pass
+
 
 def drawCurve(pt1, pt2, pt3, pt4):
     # https://en.wikipedia.org/wiki/B%C3%A9zier_curve
     pass
 
-
+#########################################################
+# Tests
+#########################################################
 if __name__ == '__main__':
     print('unit tests')
     dir = osh.getRoot(__file__)
@@ -75,7 +95,7 @@ if __name__ == '__main__':
     h, w = im.shape[:2]
 
     drawLine(im, (0, 0), (w//2, h//2), hasArrow=True)
-    drawPoly(im, (0, 0), (w, h//2), (w//2, h))
+    drawPoly(im, [(0, 0), (w, h//2), (w//2, h)])
 
     cv2.imshow('Test', im)
     cv2.waitKey(0)
