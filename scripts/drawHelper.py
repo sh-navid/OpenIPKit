@@ -25,7 +25,7 @@ DEFAULT_MARKER_SIZE = 5
 # Functions
 #########################################################
 
-
+# Fixme: this is buggy; fix it
 def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerType=DEFAULT_MARKER, markerSize=DEFAULT_MARKER_SIZE):
     cv2.drawMarker(
         im,

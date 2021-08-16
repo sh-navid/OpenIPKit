@@ -23,8 +23,8 @@ drw.drawStar(im, (w-ox*3, oh), oh/2, color=rc(), points=8,rotation=25)
 drw.drawStar(im, (ox, h-oh), oh/2, color=rc(), points=9)
 drw.drawStar(im, (w-ox, h-oh), oh/2, color=rc(), points=11, thickness=15)
 
-drw.drawTriangle(im, (ox, h/2), oh/2, color=rc(), thickness=20)
-drw.drawTriangle(im, (w-ox, h/2), oh/2, color=rc(), rotation=45)
+drw.drawTriangle(im, (ox, h/2), oh/f, color=rc(), thickness=20)
+drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 
 # drawMarker(im,(w//2,h//2))
 
