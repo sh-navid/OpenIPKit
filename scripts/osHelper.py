@@ -7,6 +7,7 @@
 # Add preprocessors
 #########################################################
 import os
+from posixpath import dirname
 import sys
 
 #########################################################
@@ -14,22 +15,23 @@ import sys
 #########################################################
 
 
-def getPath(__file__):
-    return os.path.abspath(os.path.dirname(__file__))
-
-
 def listPath():
     return sys.path
 
 
-def getSpecificParentDir(__file__, dirName):
-    pth = getPath(__file__)
-    pth = (pth.split(dirName)[0]+'\\'+dirName).replace('\\\\', '\\')
-    return pth
+def getPath(__file__):
+    return os.path.abspath(os.path.dirname(__file__))
 
 
 def getRootByName(__file__, dirName):
     return getSpecificParentDir(__file__, dirName)
+
+
+def getSpecificParentDir(__file__, dirName):
+    pth = getPath(__file__)
+    dirName = dirName.replace('/', '\\')
+    pth = pth.split('\\{dirName}\\')[0]+'\\'+dirName
+    return pth
 
 
 def getSpecificChildDir(__file__, dirName):
@@ -39,10 +41,11 @@ def getSpecificChildDir(__file__, dirName):
             return (pth.split(dirName)[0]+'\\'+dirName).replace('\\\\', '\\')
     return None  # In case not found
 
-print('\n\n\n')
-print(listPath())
-print(getPath(__file__))
-print(getRootByName(__file__, 'PyHelper'))
-print(getSpecificParentDir(__file__, 'PyHelper'))
-print(getSpecificParentDir(__file__, 'scripts'))
-print(getSpecificChildDir(__file__, 'sub1'))
+
+# print('\n\n\n')
+# print(listPath())
+print('\ngetPath:              ', getPath(__file__))
+print('\ngetRootByName:        ', getRootByName(__file__, 'PyHelper'))
+print('\ngetSpecificParentDir: ', getSpecificParentDir(__file__, 'PyHelper'))
+print('\ngetSpecificParentDir: ', getSpecificParentDir(__file__, 'scripts'))
+print('\ngetSpecificChildDir:  ', getSpecificChildDir(__file__, 'sub1'))
