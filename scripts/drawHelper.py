@@ -40,8 +40,8 @@ def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerTy
     )
 
 
-def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    off, deg = 360/points, rotation
+def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, angle=360, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+    off, deg = angle/points, rotation
     pts = []
     for i in range(0, points):
         x = radius*math.cos(math.radians(deg))
@@ -49,10 +49,12 @@ def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, color=DEFAUL
         pos = (center[0]+x, center[1]+y)
         pts.append(pos)
         deg += off
-    last = pts[points-1]
-    for i in range(0, points):
+    last = pts[0]
+    for i in range(1, points):
         drawLine(im, last, pts[i], color=color, thickness=thickness)
         last = pts[i]
+    if endLastLine:
+        drawLine(im, last, pts[0], color=color, thickness=thickness)
 
 
 def drawStar(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
@@ -113,7 +115,10 @@ def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arro
         last = pts[i]
 
 
-def drawCircle():
+def drawCircle(im, center, radius, rotation=-90, angle=360, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+    # I think this function is not optimized; for now its better to use OpenCV builtin function
+    drawHomogeneousPoly(im, center, radius, rotation=rotation, angle=angle,
+                        endLastLine=endLastLine, points=270, color=color, thickness=thickness)
     pass
 
 

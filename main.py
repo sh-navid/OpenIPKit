@@ -43,16 +43,13 @@ drw.drawHomogeneousPoly(im, (ox*3, h-oh), oh/2,
 drw.drawHomogeneousPoly(im, (w-ox*3, h-oh), oh/2,
                         color=rc(), points=8, thickness=2)
 
-cv2.imshow('Test', im)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
 drw.drawTriangle(im, (ox, h/2), oh/f, color=rc(), thickness=20)
 drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 
+#cv2.imshow('Test', im)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
 ##################################################################
-
-
 im = org.copy()
 ox=w/4
 
@@ -66,6 +63,27 @@ drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_ARROW_END)
 
 pts = [(ox-ox/2, h-oh-oh/6), (ox*2-ox/2, h-oh-oh/4), (ox*3-ox/2, h-oh/4), (ox*4-ox/2, h-oh/2)]
 drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_MULTIPLE_ARROW)
+
+#cv2.imshow('Test', im)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
+##################################################################
+im = org.copy()
+ox=w/4
+
+# print(signature(drw.drawMultiLine))
+
+drw.drawCircle(im,(cx-cx/1.6,cy),h/8,color=rc(),thickness=1,angle=180,rotation=0)
+drw.drawCircle(im,(cx-cx/1.6,cy),h/5,color=rc(),thickness=10,angle=90,rotation=-90)
+drw.drawCircle(im,(cx-cx/1.6,cy),h/3,color=rc(),thickness=45,angle=270,rotation=-180)
+
+drw.drawCircle(im,(cx,cy),h/8,color=rc(),thickness=1)
+drw.drawCircle(im,(cx,cy),h/5,color=rc(),thickness=10)
+drw.drawCircle(im,(cx,cy),h/3,color=rc(),thickness=45)
+
+drw.drawCircle(im,(cx+cx/1.6,cy),h/8,color=rc(),endLastLine=False,thickness=1,angle=180,rotation=0)
+drw.drawCircle(im,(cx+cx/1.6,cy),h/5,color=rc(),endLastLine=False,thickness=10,angle=90,rotation=-90)
+drw.drawCircle(im,(cx+cx/1.6,cy),h/3,color=rc(),endLastLine=False,thickness=45,angle=270,rotation=-180)
 
 # drawMarker(im,(w//2,h//2))
 

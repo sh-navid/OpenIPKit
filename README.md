@@ -46,6 +46,23 @@ drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 
 ![im](showcase/drawMultiLine.png)
 
+### Draw Circles and Arcs
+~~~python
+drw.drawCircle(im,(cx-cx/1.6,cy),h/8,color=rc(),thickness=1,angle=180,rotation=0)
+drw.drawCircle(im,(cx-cx/1.6,cy),h/5,color=rc(),thickness=10,angle=90,rotation=-90)
+drw.drawCircle(im,(cx-cx/1.6,cy),h/3,color=rc(),thickness=45,angle=270,rotation=-180)
+
+drw.drawCircle(im,(cx,cy),h/8,color=rc(),thickness=1)
+drw.drawCircle(im,(cx,cy),h/5,color=rc(),thickness=10)
+drw.drawCircle(im,(cx,cy),h/3,color=rc(),thickness=45)
+
+drw.drawCircle(im,(cx+cx/1.6,cy),h/8,color=rc(),endLastLine=False,thickness=1,angle=180,rotation=0)
+drw.drawCircle(im,(cx+cx/1.6,cy),h/5,color=rc(),endLastLine=False,thickness=10,angle=90,rotation=-90)
+drw.drawCircle(im,(cx+cx/1.6,cy),h/3,color=rc(),endLastLine=False,thickness=45,angle=270,rotation=-180)
+~~~
+
+![im](showcase/drawArcs.png)
+
 ## OS Helper
 
 ## Color Helper
