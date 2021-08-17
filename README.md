@@ -45,6 +45,8 @@ drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 ### Draw Multiline
 
 ![im](showcase/drawMultiLine.png)
-
+___
+## Future works
+-[ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
 ___
 **This library is licensed by MIT. But used modules, including OpenCV and Python, may have other licenses. Then; To use, consider the licenses of those modules.**

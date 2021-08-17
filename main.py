@@ -10,6 +10,7 @@ import cv2
 import scripts.drawHelper as drw
 import scripts.osHelper as osh
 from scripts.colorHelper import *
+from inspect import signature
 
 #########################################################
 # Source code
@@ -54,6 +55,8 @@ drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 
 im = org.copy()
 ox=w/4
+
+print(signature(drw.drawMultiLine))
 
 pts = [(ox-ox/2, oh), (ox*2-ox/2, oh), (ox*3-ox/2, oh/2), (ox*4-ox/2, oh+oh/2)]
 drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_ARROW_NONE)
