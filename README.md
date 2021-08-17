@@ -89,9 +89,9 @@ randomDarkColors()
 ## Font Helper
 
 ## Future works
--[ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
--[ ] Draw shaped line, dashed line, dotted line in every draw function
--[ ] Draw bullet and other markers on every point of multiline function
+- [ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
+- [ ] Draw shaped line, dashed line, dotted line in every draw function
+- [ ] Draw bullet and other markers on every point of multiline function
 
 ## License
 **This library is licensed by MIT. But used modules, including OpenCV and Python, may have other licenses. Then; To use, consider the licenses of those modules.**
