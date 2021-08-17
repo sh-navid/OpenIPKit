@@ -2,7 +2,7 @@
 This is module a set of helper functions for OpenCV, ImageProcessing, ComputerVision and Python.
 
 ## Draw Helper
-### Draw Star and Triangle
+### Draw Star
 
 ~~~python
 import cv2
@@ -22,6 +22,10 @@ drw.drawStar(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickness=30)
 ~~~
 
 ![im](showcase/drawStar4.png)
+
+### Draw Homogeneous Polygon
+
+### Draw Triangle
 
 ### Draw Line, Arrow and Multiline
 ~~~python
@@ -74,6 +78,7 @@ drw.drawCircle(im,(cx+cx/1.6,cy),h/3,color=rc(),endLastLine=False,thickness=45,a
 ## OS Helper
 
 ## Color Helper
+### Random Color
 ~~~python
 from scripts.colorHelper import *
 
@@ -85,6 +90,8 @@ print(randomDarkColors())
 >(135, 231, 232)   
 >(251, 207, 165)   
 >(5, 121, 79)
+
+### Re-Map HSV Color
 
 ## Math Helper
 
