@@ -77,9 +77,9 @@ drw.drawCircle(im,(cx+cx/1.6,cy),h/3,color=rc(),endLastLine=False,thickness=45,a
 
 ## Color Helper
 ~~~python
-    randomColor(min=0, max=255)
-    randomLightColors()
-    randomDarkColors()
+randomColor(min=0, max=255)
+randomLightColors()
+randomDarkColors()
 ~~~
 
 ## Math Helper
