@@ -46,9 +46,9 @@ drw.drawHomogeneousPoly(im, (w-ox*3, h-oh), oh/2,
 drw.drawTriangle(im, (ox, h/2), oh/f, color=rc(), thickness=20)
 drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 
-#cv2.imshow('Test', im)
-#cv2.waitKey(0)
-#cv2.destroyAllWindows()
+cv2.imshow('Test', im)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 ##################################################################
 im = org.copy()
 ox=w/4
@@ -64,9 +64,9 @@ drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_ARROW_END)
 pts = [(ox-ox/2, h-oh-oh/6), (ox*2-ox/2, h-oh-oh/4), (ox*3-ox/2, h-oh/4), (ox*4-ox/2, h-oh/2)]
 drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_MULTIPLE_ARROW)
 
-#cv2.imshow('Test', im)
-#cv2.waitKey(0)
-#cv2.destroyAllWindows()
+cv2.imshow('Test', im)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 ##################################################################
 im = org.copy()
 ox=w/4
