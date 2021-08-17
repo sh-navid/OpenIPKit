@@ -77,10 +77,16 @@ drw.drawCircle(im,(cx+cx/1.6,cy),h/3,color=rc(),endLastLine=False,thickness=45,a
 
 ## Color Helper
 ~~~python
-randomColor(min=0, max=255)
-randomLightColors()
-randomDarkColors()
+from scripts.colorHelper import *
+
+print(randomColor(min=0, max=255))
+print(randomLightColors())
+print(randomDarkColors())
 ~~~
+
+>>(135, 231, 232)
+>>(251, 207, 165)
+>>(5, 121, 79)
 
 ## Math Helper
 
