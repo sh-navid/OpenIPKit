@@ -119,13 +119,12 @@ def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arro
 def drawCircle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     # I think this function is not optimized; for now its better to use OpenCV builtin function
     drawHomogeneousPoly(im, center, radius, rotation=rotation, arc=arc,
-                        endLastLine=endLastLine, points=45, color=color, thickness=thickness)
-    pass
+        endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
 
 
 def drawTriangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     drawHomogeneousPoly(im, center, radius, points=3, rotation=rotation,
-             color=color, thickness=thickness)
+        color=color, thickness=thickness)
 
 
 def drawRectFromCenter():
