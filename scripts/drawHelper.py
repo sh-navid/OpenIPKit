@@ -118,7 +118,7 @@ def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arro
 def drawCircle(im, center, radius, rotation=-90, angle=360, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     # I think this function is not optimized; for now its better to use OpenCV builtin function
     drawHomogeneousPoly(im, center, radius, rotation=rotation, angle=angle,
-                        endLastLine=endLastLine, points=270, color=color, thickness=thickness)
+                        endLastLine=endLastLine, points=45, color=color, thickness=thickness)
     pass
 
 
