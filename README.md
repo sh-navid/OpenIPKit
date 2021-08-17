@@ -62,16 +62,11 @@ rc = randomColor
 drw.drawLine(im, (60, 303), (151, 40), color=rc(), hasArrow=True)
 drw.drawLine(im, (240, 307), (330, 40), color=rc(), hasArrow=False)
 
-x = 0
-pts = [(418+x, 303), (461+x, 195),  (539+x, 140), (520+x, 40)]
+pts = [(418, 303), (461, 195),  (539, 140), (520, 40)]
 drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_ARROW_NONE)
-
-x = 205
-pts = [(418+x, 303), (461+x, 195),  (539+x, 140), (520+x, 40)]
+#or
 drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_ARROW_END)
-
-x = 410
-pts = [(418+x, 303), (461+x, 195),  (539+x, 140), (520+x, 40)]
+#or
 drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_MULTIPLE_ARROW)
 ~~~
 
