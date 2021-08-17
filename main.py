@@ -27,10 +27,7 @@ im = org.copy()
 
 drw.drawPoly(im, [(w/f, h/f), (w-w/f, h/2), (w/2, h-h/f)], color=rc())
 
-drw.drawHomogeneousPoly(im, (ox*3, h-oh), oh/2,
-                        color=rc(), points=5, rotation=45)
-drw.drawHomogeneousPoly(im, (w-ox*3, h-oh), oh/2,
-                        color=rc(), points=8, thickness=2)
+
 
 drw.drawTriangle(im, (ox, h/2), oh/f, color=rc(), thickness=20)
 drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)

@@ -25,6 +25,25 @@ drw.drawStar(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickness=30)
 
 ### Draw Homogeneous Polygon
 
+~~~python
+import cv2
+import scripts.drawHelper as drw
+import scripts.osHelper as osh
+from scripts.colorHelper import *
+ 
+im = cv2.imread(osh.getPath(__file__)+r'/media/im.png')
+
+h, w = im.shape[:2]
+cx, ch = w/2, h/2
+rc = randomColor
+
+drw.drawHomogeneousPoly(im, (cx-cx/1.6, ch), ch/2, color=rc(), rotation=-90)
+drw.drawHomogeneousPoly(im, (cx, ch), ch/2, color=rc(), rotation=-90, thickness=10, points=9)
+drw.drawHomogeneousPoly(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickness=30)
+~~~
+
+![im](showcase/drawHomogeneousPoly.png)
+
 ### Draw Triangle
 
 ### Draw Line, Arrow and Multiline
