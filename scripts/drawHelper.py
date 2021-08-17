@@ -124,7 +124,7 @@ def drawCircle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, 
 
 
 def drawTriangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    drawStar(im, center, radius, points=3, rotation=rotation,
+    drawHomogeneousPoly(im, center, radius, points=3, rotation=rotation,
              color=color, thickness=thickness)
 
 

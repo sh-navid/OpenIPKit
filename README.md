@@ -45,6 +45,24 @@ drw.drawHomogeneousPoly(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickn
 ![im](showcase/drawHomogeneousPoly.png)
 
 ### Draw Triangle
+~~~python
+import cv2
+import scripts.drawHelper as drw
+import scripts.osHelper as osh
+from scripts.colorHelper import *
+
+im = cv2.imread(osh.getPath(__file__)+r'/media/im.png')
+
+h, w = im.shape[:2]
+cx, ch, of = w/2, h/2, h/18
+rc = randomColor
+
+drw.drawTriangle(im, (cx-cx/1.6, ch+of), ch/2, color=rc(), rotation=-90)
+drw.drawTriangle(im, (cx, ch-of), ch/2, color=rc(), rotation=-45, thickness=15)
+drw.drawTriangle(im, (cx+cx/1.6, ch-of), ch/2, color=rc(), thickness=30)
+~~~
+
+![im](showcase/drawTriangle.png)
 
 ### Draw Line, Arrow and Multiline
 ~~~python
