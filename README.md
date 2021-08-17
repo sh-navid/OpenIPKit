@@ -92,17 +92,30 @@ drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_MULTIPLE_ARROW)
 
 ### Draw Circles and Arcs
 ~~~python
-drw.drawCircle(im,(cx-cx/1.6,cy),h/8,color=rc(),thickness=1,angle=180,rotation=0)
-drw.drawCircle(im,(cx-cx/1.6,cy),h/5,color=rc(),thickness=10,angle=90,rotation=-90)
-drw.drawCircle(im,(cx-cx/1.6,cy),h/3,color=rc(),thickness=45,angle=270,rotation=-180)
+import cv2
+import scripts.drawHelper as drw
+import scripts.osHelper as osh
+from scripts.colorHelper import *
+from inspect import signature
 
-drw.drawCircle(im,(cx,cy),h/8,color=rc(),thickness=1)
-drw.drawCircle(im,(cx,cy),h/5,color=rc(),thickness=10)
-drw.drawCircle(im,(cx,cy),h/3,color=rc(),thickness=45)
+im = cv2.imread(osh.getPath(__file__)+r'/media/im.png')
 
-drw.drawCircle(im,(cx+cx/1.6,cy),h/8,color=rc(),endLastLine=False,thickness=1,angle=180,rotation=0)
-drw.drawCircle(im,(cx+cx/1.6,cy),h/5,color=rc(),endLastLine=False,thickness=10,angle=90,rotation=-90)
-drw.drawCircle(im,(cx+cx/1.6,cy),h/3,color=rc(),endLastLine=False,thickness=45,angle=270,rotation=-180)
+h, w = im.shape[:2]
+f, ox, oh, cx, cy = 2.5, w/4, h/4, w/2, h/2
+rc = randomColor
+
+drw.drawCircle(im, (cx-cx/1.6, cy), h/14, color=rc(), thickness=2, arc=180, rotation=0)
+drw.drawCircle(im, (cx-cx/1.6, cy), h/7, color=rc(), thickness=10, arc=90, rotation=-90)
+drw.drawCircle(im, (cx-cx/1.6, cy), h/4, color=rc(), thickness=25, arc=270, rotation=-180)
+
+drw.drawCircle(im, (cx, cy), h/14, color=rc(), thickness=2)
+drw.drawCircle(im, (cx, cy), h/7, color=rc(), thickness=10)
+drw.drawCircle(im, (cx, cy), h/4, color=rc(), thickness=25)
+
+drw.drawCircle(im, (cx+cx/1.6, cy), h/14, color=rc(), endLastLine=False, thickness=2, arc=180, rotation=0)
+drw.drawCircle(im, (cx+cx/1.6, cy), h/7, color=rc(), endLastLine=False, thickness=10, arc=90, rotation=-90)
+drw.drawCircle(im, (cx+cx/1.6, cy), h/4, color=rc(), endLastLine=False, thickness=25, arc=270, rotation=-180)
+
 ~~~
 
 ![im](showcase/drawArc.png)
