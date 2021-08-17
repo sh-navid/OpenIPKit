@@ -97,6 +97,22 @@ def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasA
     )''')
 
 
+MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'MLAE', 'MLMA'
+
+
+def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
+    pts = arh.toInt2dArray(pts)
+    last = pts[0]
+    num = len(pts)
+    for i in range(1, num):
+        drawLine(im, last, pts[i], color=color, thickness=thickness, hasArrow=(
+            (arrowType == MULTILINE_MULTIPLE_ARROW)
+            or
+            (arrowType == MULTILINE_ARROW_END and i == num-1)
+        ))
+        last = pts[i]
+
+
 def drawCircle():
     pass
 
