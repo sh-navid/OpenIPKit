@@ -89,6 +89,7 @@ randomDarkColors()
 ## Font Helper
 
 ## Future works
+- [x] Draw arc
 - [ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
 - [ ] Draw shaped line, dashed line, dotted line in every draw function
 - [ ] Draw bullet and other markers on every point of multiline function
