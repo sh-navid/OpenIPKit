@@ -1,3 +1,11 @@
+#########################################################
+# Author: sh-navid
+#########################################################
+'''
+'''
+#########################################################
+# Add preprocessors
+#########################################################
 import cv2
 import scripts.drawHelper as drw
 import scripts.osHelper as osh
@@ -15,8 +23,10 @@ cx, ch = w/2, h/2
 rc = randomColor
 
 drw.drawHomogeneousPoly(im, (cx-cx/1.6, ch), ch/2, color=rc(), rotation=-90)
-drw.drawHomogeneousPoly(im, (cx, ch), ch/2, color=rc(), rotation=-90, thickness=10, points=9)
-drw.drawHomogeneousPoly(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickness=30)
+drw.drawHomogeneousPoly(im, (cx, ch), ch/2, color=rc(),
+                        rotation=-90, thickness=10, points=9)
+drw.drawHomogeneousPoly(im, (cx+cx/1.6, ch), ch/2,
+                        color=rc(), points=15, thickness=30)
 
 
 cv2.imshow('Test', im)
