@@ -20,6 +20,10 @@ DEFAULT_COLOR = (128, 0, 200)
 DEFAULT_TICKNESS = 5
 DEFAULT_MARKER = cv2.MARKER_CROSS
 DEFAULT_MARKER_SIZE = 5
+DEFAULT_ROTATION=-90
+DEFAULT_ARC=360
+
+MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'MLAE', 'MLMA'
 
 #########################################################
 # Functions
@@ -40,15 +44,15 @@ def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerTy
     )
 
 
-def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, angle=360, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    off, deg = angle/points, rotation
+def drawHomogeneousPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+    off, angle = arc/points, rotation
     pts = []
     for i in range(0, points):
-        x = radius*math.cos(math.radians(deg))
-        y = radius*math.sin(math.radians(deg))
+        x = radius*math.cos(math.radians(angle))
+        y = radius*math.sin(math.radians(angle))
         pos = (center[0]+x, center[1]+y)
         pts.append(pos)
-        deg += off
+        angle += off
     last = pts[0]
     for i in range(1, points):
         drawLine(im, last, pts[i], color=color, thickness=thickness)
@@ -57,15 +61,15 @@ def drawHomogeneousPoly(im, center, radius, points=5, rotation=-90, angle=360, e
         drawLine(im, last, pts[0], color=color, thickness=thickness)
 
 
-def drawStar(im, center, radius, points=5, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    off, deg = 360/points, rotation
+def drawStar(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+    off, angle = 360/points, rotation
     pts = []
     for i in range(0, points):
-        x = radius*math.cos(math.radians(deg))
-        y = radius*math.sin(math.radians(deg))
+        x = radius*math.cos(math.radians(angle))
+        y = radius*math.sin(math.radians(angle))
         pos = (center[0]+x, center[1]+y)
         pts.append(pos)
-        deg += off
+        angle += off
     last, idx = pts[0], 0
     for i in range(0, points):
         idx += points-2
@@ -99,9 +103,6 @@ def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasA
     )''')
 
 
-MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'MLAE', 'MLMA'
-
-
 def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
     pts = arh.toInt2dArray(pts)
     last = pts[0]
@@ -115,14 +116,14 @@ def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arro
         last = pts[i]
 
 
-def drawCircle(im, center, radius, rotation=-90, angle=360, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def drawCircle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     # I think this function is not optimized; for now its better to use OpenCV builtin function
-    drawHomogeneousPoly(im, center, radius, rotation=rotation, angle=angle,
+    drawHomogeneousPoly(im, center, radius, rotation=rotation, arc=arc,
                         endLastLine=endLastLine, points=45, color=color, thickness=thickness)
     pass
 
 
-def drawTriangle(im, center, radius, rotation=-90, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def drawTriangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     drawStar(im, center, radius, points=3, rotation=rotation,
              color=color, thickness=thickness)
 
