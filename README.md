@@ -61,7 +61,7 @@ drw.drawCircle(im,(cx+cx/1.6,cy),h/5,color=rc(),endLastLine=False,thickness=10,a
 drw.drawCircle(im,(cx+cx/1.6,cy),h/3,color=rc(),endLastLine=False,thickness=45,angle=270,rotation=-180)
 ~~~
 
-![im](showcase/drawArcs.png)
+![im](showcase/drawArc.png)
 
 ## OS Helper
 
