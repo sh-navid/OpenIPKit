@@ -42,5 +42,8 @@ drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 
 ![im](showcase/drawStar3.png)
 
+
+![im](showcase/drawMultiLine.png)
+
 ___
 **This library is licensed by MIT. But used modules, including OpenCV and Python, may have other licenses. Then; To use, consider the licenses of those modules.**
