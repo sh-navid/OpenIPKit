@@ -1,5 +1,5 @@
 # PyHelper
-This module a set of helper functions for OpenCV, ImageProcessing, CV and Python.
+This is module a set of helper functions for OpenCV, ImageProcessing, ComputerVision and Python.
 
 ## Draw Helper
 ### Draw Star and Triangle
