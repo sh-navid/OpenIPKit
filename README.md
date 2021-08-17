@@ -1,7 +1,7 @@
 # PyHelper
 This module a set of helper functions for OpenCV, ImageProcessing, CV and Python.
 
-## Draw Functions
+## Draw Helper
 ### Draw Star and Triangle
 
 ~~~python
@@ -45,6 +45,16 @@ drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 ### Draw Multiline
 
 ![im](showcase/drawMultiLine.png)
+___
+## OS Helper
+___
+## Color Helper
+___
+## Math Helper
+___
+## Array Helper
+___
+## Font Helper
 ___
 ## Future works
 -[ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
