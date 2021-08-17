@@ -42,6 +42,7 @@ drw.drawTriangle(im, (w-ox, h/2), oh/f, color=rc(), rotation=45)
 
 ![im](showcase/drawStar3.png)
 
+### Draw Multiline
 
 ![im](showcase/drawMultiLine.png)
 
