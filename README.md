@@ -152,25 +152,5 @@ print(randomDarkColors())
 - [ ] Draw bullet and other markers on every point of multiline function
 
 
-<table>
-    <tr>
-        <td>A</td><td>B</td><td>C</td><td>D</td>
-    </tr>
-</table>
-
-
-<pre style='color:yellow'>
-╔═══════════════╦═══════════════╗
-║       A       ║       B       ║
-╚═══════════════╩═══════════════╝
-
-╔═══════════════╦═══════════════╗
-║       A       ║       B       ║
-╟───────────────╫───────────────╢
-║       C       ║       D       ║
-╚═══════════════╩═══════════════╝
-</pre>
-
-
 ## License
 **This library is licensed by MIT. But used modules, including OpenCV and Python, may have other licenses. Then; To use, consider the licenses of those modules.**
