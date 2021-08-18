@@ -154,7 +154,7 @@ print(randomDarkColors())
 
 <table>
     <tr>
-        <td>A</td><td>B</td><td>C</td>
+        <td>A</td><td>B</td><td>C</td><td>D</td>
     </tr>
 </table>
 
