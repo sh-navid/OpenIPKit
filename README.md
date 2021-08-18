@@ -159,5 +159,8 @@ print(randomDarkColors())
 </table>
 
 
+<tr><td>A</td><td>B</td><td>C</td><td>E</td></tr>
+
+
 ## License
 **This library is licensed by MIT. But used modules, including OpenCV and Python, may have other licenses. Then; To use, consider the licenses of those modules.**
