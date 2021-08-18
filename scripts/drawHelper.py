@@ -147,7 +147,7 @@ def drawOval():
     pass
 
 
-def drawCurve(pt1, pt2, pt3, pt4):
+def drawCurve(pt1, pt2, pt3):
     # https://en.wikipedia.org/wiki/B%C3%A9zier_curve
     # For now just draw over 3 points
     pass

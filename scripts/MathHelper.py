@@ -11,3 +11,8 @@ import math
 #########################################################
 # Functions
 #########################################################
+
+
+def dist(pt1, pt2):
+    '''Return the distance between 2 points'''
+    return (abs(pt1[0]-pt2[0]), abs(pt1[1]-pt2[1]))
