@@ -159,7 +159,7 @@ print(randomDarkColors())
 </table>
 
 
-<pre style='line-height:50%'>
+<pre style='line-height:10px'>
 ╔═══════════════╦═══════════════╗
 ║       A       ║       B       ║
 ╚═══════════════╩═══════════════╝
