@@ -26,12 +26,17 @@ rc = randomColor
 pt1, pt2, pt3 = (ox, cy), (cx, oh), (w-ox, cy)
 drw.drawMultiLine(im, [pt1, pt2, pt3], thickness=1)
 
-slices=10
-_12=mth.dist(pt1,pt2)//slices
-_23=mth.dist(pt2,pt3)//slices
+slices = 10
+_12 = mth.dist(pt1, pt2)//slices
+_23 = mth.dist(pt2, pt3)//slices
 
-for i in range(0,len(slices)):
-    cv2.circle(im,(pt1[0]),10,color=(120,30,240),thickness=3)
+m1, b1 = mth.lineEq(pt1, pt2)
+m2, b2 = mth.lineEq(pt2, pt3)
+for i in range(0, slices):
+    x = int(pt1[0]+(i*_12))
+    y = int(mth.calcLineY(m1, b1, x))
+    cv2.circle(im, (x, y), 5, color=(120, 30, 240),
+               thickness=3, lineType=cv2.LINE_AA)
 
 cv2.imshow('Test', im)
 cv2.waitKey(0)
