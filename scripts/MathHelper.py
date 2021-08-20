@@ -15,7 +15,7 @@ import math
 
 def dist(pt1, pt2):
     '''Return the distance between 2 points'''
-    return (abs(pt1[0]-pt2[0]), abs(pt1[1]-pt2[1]))
+    return math.sqrt(abs(pt1[0]-pt2[0])**2 + abs(pt1[1]-pt2[1])**2)
 
 
 def lineEq(pt1, pt2):
