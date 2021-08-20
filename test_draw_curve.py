@@ -23,7 +23,7 @@ h, w = im.shape[:2]
 ox, oh, cx, cy, o = w/4, h/4, w/2, h/2, (w/2)/1.6
 rc = randomColor
 
-pt1, pt2, pt3 = (ox, cy), (cx, oh), (w-ox, cy)
+pt1, pt2, pt3 = (ox, h-h/8), (cx, oh), (w-ox, h-h/8)
 drw.drawMultiLine(im, [pt1, pt2, pt3], thickness=1)
 
 slices = 10
@@ -33,10 +33,17 @@ _23 = mth.dist(pt2, pt3)//slices
 m1, b1 = mth.lineEq(pt1, pt2)
 m2, b2 = mth.lineEq(pt2, pt3)
 for i in range(0, slices):
-    x = int(pt1[0]+(i*_12))
-    y = int(mth.calcLineY(m1, b1, x))
-    cv2.circle(im, (x, y), 5, color=(120, 30, 240),
-               thickness=3, lineType=cv2.LINE_AA)
+    x1 = int(pt1[0]+(i*_12))
+    y1 = int(mth.calcLineY(m1, b1, x1))
+    cv2.circle(im, (x1, y1), 2, color=(160, 20, 255),
+               thickness=2, lineType=cv2.LINE_AA)
+
+    x2 = int(pt2[0]+(i*_23))
+    y2 = int(mth.calcLineY(m2, b2, x2))
+    cv2.circle(im, (x2, y2), 2, color=(160, 20, 255),
+               thickness=2, lineType=cv2.LINE_AA)
+
+    drw.drawMultiLine(im, [(x1, y1), (x2, y2)], thickness=1)
 
 cv2.imshow('Test', im)
 cv2.waitKey(0)
