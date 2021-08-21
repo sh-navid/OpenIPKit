@@ -11,6 +11,7 @@ import cv2
 import math
 import numpy as np
 import scripts.osHelper as osh
+import scripts.mathHelper as mth
 import scripts.arrayHelper as arh
 
 #########################################################
@@ -20,8 +21,8 @@ DEFAULT_COLOR = (128, 0, 200)
 DEFAULT_TICKNESS = 5
 DEFAULT_MARKER = cv2.MARKER_CROSS
 DEFAULT_MARKER_SIZE = 5
-DEFAULT_ROTATION=-90
-DEFAULT_ARC=360
+DEFAULT_ROTATION = -90
+DEFAULT_ARC = 360
 
 MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'MLAE', 'MLMA'
 
@@ -113,18 +114,27 @@ def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arro
             or
             (arrowType == MULTILINE_ARROW_END and i == num-1)
         ))
+
+        m, d = mth.lineEq(last, pts[i])
+        dx = pts[i][0]-last[0]
+        dy = pts[i][1]-last[1]
+        th = math.atan(dy/dx)
+        deg = math.degrees(th)
+        if dx<0:
+            deg-=180
+        drawTriangle(im, pts[i], 20, rotation=deg)
         last = pts[i]
 
 
 def drawCircle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     # I think this function is not optimized; for now its better to use OpenCV builtin function
     drawHomogeneousPoly(im, center, radius, rotation=rotation, arc=arc,
-        endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
+                        endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
 
 
 def drawTriangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     drawHomogeneousPoly(im, center, radius, points=3, rotation=rotation,
-        color=color, thickness=thickness)
+                        color=color, thickness=thickness)
 
 
 def drawRectFromCenter():

@@ -18,6 +18,17 @@ def dist(pt1, pt2):
     return math.sqrt(abs(pt1[0]-pt2[0])**2 + abs(pt1[1]-pt2[1])**2)
 
 
+def dXY(pt1, pt2):
+    dx = pt2[0]-pt1[0]
+    dy = pt2[1]-pt1[1]
+    return (dx, dy)
+
+
+def absDXY(pt1, pt2):
+    dx, dy = dXY(pt1, pt2)
+    return (abs(dx), abs(dy))
+
+
 def lineEq(pt1, pt2):
     x1, y1 = pt1[:2]
     x2, y2 = pt2[:2]

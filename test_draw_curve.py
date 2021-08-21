@@ -43,7 +43,8 @@ for i in range(0, slices):
     cv2.circle(im, (x2, y2), 2, color=(160, 20, 255),
                thickness=2, lineType=cv2.LINE_AA)
 
-    drw.drawMultiLine(im, [(x1, y1), (x2, y2)], thickness=1 ,color=(200,30,100))
+    drw.drawMultiLine(im, [(x1, y1), (x2, y2)],
+                      thickness=1, color=(200, 30, 100))
 
 cv2.imshow('Test', im)
 cv2.waitKey(0)
