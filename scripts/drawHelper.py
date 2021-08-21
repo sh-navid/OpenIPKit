@@ -109,20 +109,19 @@ def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arro
     last = pts[0]
     num = len(pts)
     for i in range(1, num):
-        drawLine(im, last, pts[i], color=color, thickness=thickness, hasArrow=(
-            (arrowType == MULTILINE_MULTIPLE_ARROW)
-            or
-            (arrowType == MULTILINE_ARROW_END and i == num-1)
-        ))
+        drawLine(im, last, pts[i], color=color, thickness=thickness)
 
-        m, d = mth.lineEq(last, pts[i])
-        dx = pts[i][0]-last[0]
-        dy = pts[i][1]-last[1]
-        th = math.atan(dy/dx)
-        deg = math.degrees(th)
-        if dx<0:
-            deg-=180
-        drawTriangle(im, pts[i], 20, rotation=deg)
+        c1 = (arrowType == MULTILINE_MULTIPLE_ARROW)
+        c2 = (arrowType == MULTILINE_ARROW_END and i == num-1)
+        if c1 or c2:
+            dx, dy = mth.dXY(last, pts[i])
+            deg = math.degrees(math.atan(dy/dx))
+            if dx < 0:
+                deg -= 180
+            end=(last[0]+(dx/2), last[1]+(dy/2)) if c1 else pts[i]
+            drawTriangle(im, end, thickness *
+                         2, rotation=deg, color=color, thickness=thickness)
+
         last = pts[i]
 
 
