@@ -15,7 +15,9 @@ import math
 
 def dist(pt1, pt2):
     '''Return the distance between 2 points'''
-    return math.sqrt(abs(pt1[0]-pt2[0])**2 + abs(pt1[1]-pt2[1])**2)
+    #return math.sqrt(abs(pt1[0]-pt2[0])**2 + abs(pt1[1]-pt2[1])**2)
+    dx,dy=dXY(pt1, pt2)
+    return math.hypot(dx,dy)
 
 
 def dXY(pt1, pt2):

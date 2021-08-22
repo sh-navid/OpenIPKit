@@ -92,6 +92,10 @@ def drawPoly(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
 
 
 def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasArrow=False):
+    """
+    pt1: (x1,y1)
+    pt2: (x2,y2)
+    """
     fn = cv2.line if not hasArrow else cv2.arrowedLine
     type = 'lineType' if not hasArrow else 'line_type'
     eval(f'''fn(

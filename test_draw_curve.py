@@ -11,7 +11,6 @@ import scripts.drawHelper as drw
 import scripts.osHelper as osh
 import scripts.mathHelper as mth
 from scripts.colorHelper import *
-from inspect import signature
 
 #########################################################
 # Source code
@@ -32,7 +31,7 @@ d23 = mth.dist(pt2, pt3)/slices
 
 m1, b1 = mth.lineEq(pt1, pt2)
 m2, b2 = mth.lineEq(pt2, pt3)
-for i in range(0, slices):
+for i in range(0, slices-1):
     x1 = int(pt1[0]+(i*d12))
     y1 = int(mth.calcLineY(m1, b1, x1))
     cv2.circle(im, (x1, y1), 2, color=(160, 20, 255),

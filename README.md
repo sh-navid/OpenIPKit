@@ -197,6 +197,7 @@ b5 = changeBrightness(im, val=100)
 - [ ] Make a simple tool to find HSV range
 - [ ] Make a simple FeatureMatcher
 - [ ] Add some features to console table maker
+- [ ] Make 3D renderer for image slices
 
 
 ## License
