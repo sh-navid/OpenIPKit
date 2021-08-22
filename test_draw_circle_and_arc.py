@@ -10,7 +10,6 @@ import cv2
 import scripts.drawHelper as drw
 import scripts.osHelper as osh
 from scripts.colorHelper import *
-from inspect import signature
 
 #########################################################
 # Source code
