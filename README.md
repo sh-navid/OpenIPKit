@@ -122,6 +122,7 @@ drw.drawCircle(im, (cx+o, cy), h/4, color=rc(), endLastLine=False, thickness=25,
 ![im](showcase/drawArc.png)
 
 ## OS Helper
+|FIXME|
 
 ## Color Helper
 ### Random Color
@@ -177,10 +178,13 @@ b5 = changeBrightness(im, val=100)
 ![im](showcase/bri.png)
 
 ## Math Helper
+|FIXME|
 
 ## Array Helper
+|FIXME|
 
 ## Font Helper
+|FIXME|
 
 ## Future works
 - [x] Draw arc
@@ -190,6 +194,9 @@ b5 = changeBrightness(im, val=100)
 - [ ] Draw bullet and other markers on every point of multiline function
 - [ ] Make a simpler structure for put small image in big image
 - [ ] Make a simpler structure for rotate and transform images
+- [ ] Make a simple tool to find HSV range
+- [ ] Make a simple FeatureMatcher
+- [ ] Add some features to console table maker
 
 
 ## License
