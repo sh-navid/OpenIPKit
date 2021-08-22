@@ -139,6 +139,15 @@ print(randomDarkColors())
 
 ### Re-Map HSV Color
 
+### Change Hue(Color) of image
+![im](showcase/hue.png)
+
+### Change Saturation of image
+![im](showcase/sat.png)
+
+### Change Brightness of image
+![im](showcase/bri.png)
+
 ## Math Helper
 
 ## Array Helper
@@ -147,10 +156,12 @@ print(randomDarkColors())
 
 ## Future works
 - [x] Draw arc
+- [x] Fix arrows of miltipleLines with the same pointer size
 - [ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
 - [ ] Draw shaped line, dashed line, dotted line in every draw function
 - [ ] Draw bullet and other markers on every point of multiline function
-- [ ]
+- [ ] Make a simpler structure for put small image in big image
+- [ ] Make a simpler structure for rotate and transform images
 
 
 ## License
