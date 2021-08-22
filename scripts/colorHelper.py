@@ -32,6 +32,8 @@ def getHSV(im):
     (h, s, v) = cv2.split(hsv)
     return h,s,v
 
+# Fixme: pass mask ro RIO to changeHue, changeSaturation and changeBrightness
+
 def changeHue(im, hue=130):
     h,s,v=getHSV(im)
     h[:] = hue
