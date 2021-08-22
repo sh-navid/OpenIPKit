@@ -138,14 +138,42 @@ print(randomDarkColors())
 >(5, 121, 79)
 
 ### Re-Map HSV Color
+|FIXME|
 
 ### Change Hue(Color) of image
+~~~python
+from scripts.colorHelper import *
+
+h1 = changeHue(im, hue=0)
+h2 = changeHue(im, hue=90)
+h3 = changeHue(im, hue=160)
+h4 = changeHue(im, hue=240)
+h5 = changeHue(im, hue=310)
+~~~
 ![im](showcase/hue.png)
 
 ### Change Saturation of image
+~~~python
+from scripts.colorHelper import *
+
+s1 = changeSaturation(im, sat=5)
+s2 = changeSaturation(im, sat=25)
+s3 = changeSaturation(im, sat=50)
+s4 = changeSaturation(im, sat=75)
+s5 = changeSaturation(im, sat=95)
+~~~
 ![im](showcase/sat.png)
 
 ### Change Brightness of image
+~~~python
+from scripts.colorHelper import *
+
+b1 = changeBrightness(im, val=15)
+b2 = changeBrightness(im, val=35)
+b3 = changeBrightness(im, val=55)
+b4 = changeBrightness(im, val=75)
+b5 = changeBrightness(im, val=100)
+~~~
 ![im](showcase/bri.png)
 
 ## Math Helper
