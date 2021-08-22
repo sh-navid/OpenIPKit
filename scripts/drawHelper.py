@@ -105,13 +105,13 @@ def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasA
 
 
 def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
+    c1 = (arrowType == MULTILINE_MULTIPLE_ARROW)
     pts = arh.toInt2dArray(pts)
     last = pts[0]
     num = len(pts)
     for i in range(1, num):
         drawLine(im, last, pts[i], color=color, thickness=thickness)
 
-        c1 = (arrowType == MULTILINE_MULTIPLE_ARROW)
         c2 = (arrowType == MULTILINE_ARROW_END and i == num-1)
         if c1 or c2:
             dx, dy = mth.dXY(last, pts[i])
