@@ -14,16 +14,17 @@ import sys
 # Source code
 #########################################################
 
-im = cv2.imread(sys.path[0]+'/NSFreeFont.png', cv2.IMREAD_GRAYSCALE)
-im = cv2.threshold(im, 225, 255, cv2.THRESH_BINARY)[1]
-im = ~im
+im = cv2.imread(sys.path[0]+'/NSFreeFont.png')
+#im=cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+#im = cv2.threshold(im, 225, 255, cv2.THRESH_BINARY)[1]
+#im = ~im
 
 H, W = im.shape[:2]
 
 downscale = 5
 im = cv2.resize(im, (W//downscale, H//downscale))
 H, W = im.shape[:2]
-im = cv2.threshold(im, 127, 255, cv2.THRESH_BINARY)[1]
+#im = cv2.threshold(im, 127, 255, cv2.THRESH_BINARY)[1]
 
 
 ROWS, COLS = 7, 6
@@ -38,7 +39,7 @@ class Ch:
         self.ch = ch
 
 
-elements = {
+rawList = [
     Ch(0, 0, 'A'), Ch(1, 0, 'B'), Ch(2, 0, 'C'), Ch(
         3, 0, 'D'), Ch(4, 0, 'E'), Ch(5, 0, 'F'),
     Ch(0, 1, 'G'), Ch(1, 1, 'H'), Ch(2, 1, 'I'), Ch(
@@ -53,13 +54,13 @@ elements = {
         3, 5, '3'), Ch(4, 5, '4'), Ch(5, 5, '5'),
     Ch(0, 6, '6'), Ch(1, 6, '7'), Ch(2, 6, '8'), Ch(
         3, 6, '9'), Ch(4, 6, '-'), Ch(5, 6, '+'),
-}
+]
 
 dictList = {}
-for el in elements:
+for el in rawList:
     dictList[el.ch] = {'xi': el.xi, 'yi': el.yi}
 
-print(dictList)
+#print(dictList)
 
 for yi in range(0, ROWS):
     for xi in range(0, COLS):
@@ -67,27 +68,29 @@ for yi in range(0, ROWS):
         pt2 = (int(xi*SW+SW), int(yi*SH+SH))
         #cv2.rectangle(im, pt1, pt2, (0, 255, 0), 1)
 
-im = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
+#im = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
 cv2.imwrite(sys.path[0]+'/NSFreeFontProcessed.png', im)
 
 
 def drawNSFreeFont(im2, pos, text):
     l = 0
     for c in text:
-        ptr = dictList[c]
-        if ptr == None:
+        ptr = None
+        try:
+            ptr = dictList[c]
+        except:
             ptr = dictList['-']
         x = int(ptr['xi']*SW)
         y = int(ptr['yi']*SH)
         Y = int(pos[1])
         X = int(pos[0]+l)
         SHI, SWI = int(SH), int(SW)
-        im2[Y:Y+SHI, X:X+SWI] = im[y:y+SHI, l+x:l+x+SWI]
+        im2[Y:Y+SHI, X:X+SWI] = im[y:y+SHI, x:x+SWI]
         l += SWI
 
 
 myIm = 127 * np.ones((300, 300, 3), dtype=np.uint8)
-drawNSFreeFont(myIm, (50, 120), "TEST")
+drawNSFreeFont(myIm, (20, 130), "ORIGINAL")
 
 cv2.imshow('test', myIm)
 cv2.waitKey(0)
