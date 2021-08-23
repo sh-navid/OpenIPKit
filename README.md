@@ -189,6 +189,7 @@ b5 = changeBrightness(im, val=100)
 ## Future works
 - [x] Draw arc
 - [x] Fix arrows of miltipleLines with the same pointer size
+- [~] Make a font and font-wrapper
 - [ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
 - [ ] Draw shaped line, dashed line, dotted line in every draw function
 - [ ] Draw bullet and other markers on every point of multiline function
