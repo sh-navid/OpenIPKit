@@ -15,6 +15,7 @@ import sys
 #########################################################
 
 im = cv2.imread(sys.path[0]+'/NSFreeFont.png',cv2.IMREAD_GRAYSCALE)
-im=cv2.threshold(im,127,255,cv2.THRESH_BINARY)[1]
+im=cv2.threshold(im,225,255,cv2.THRESH_BINARY)[1]
+im=~im
 
-cv2.imshow('FONT',sys.path[0])
+cv2.imwrite(sys.path[0]+'/NSFreeFontProcessed.png',im)
