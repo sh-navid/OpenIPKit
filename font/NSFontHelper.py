@@ -20,7 +20,7 @@ im = ~im
 
 H, W = im.shape[:2]
 
-downscale = 7
+downscale = 5
 im = cv2.resize(im, (W//downscale, H//downscale))
 H, W = im.shape[:2]
 im = cv2.threshold(im, 127, 255, cv2.THRESH_BINARY)[1]
@@ -65,9 +65,9 @@ for yi in range(0, ROWS):
     for xi in range(0, COLS):
         pt1 = (int(xi*SW), int(yi*SH))
         pt2 = (int(xi*SW+SW), int(yi*SH+SH))
-        cv2.rectangle(im, pt1, pt2, (0, 255, 0), 1)
+        #cv2.rectangle(im, pt1, pt2, (0, 255, 0), 1)
 
-im=cv2.cvtColor(im,cv2.COLOR_GRAY2BGR)
+im = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
 cv2.imwrite(sys.path[0]+'/NSFreeFontProcessed.png', im)
 
 
@@ -77,16 +77,17 @@ def drawNSFreeFont(im2, pos, text):
         ptr = dictList[c]
         if ptr == None:
             ptr = dictList['-']
-        x = ptr['xi']*SW
-        y = ptr['yi']*SH
-        Y = pos[1]+y
-        X = pos[0]+l+x
-        im2[int(Y):int(Y+SH), int(X):int(X+SW)] = im[int(y):int(y+SH), int(l+x):int(l+x+SW)]
-        l += SW
+        x = int(ptr['xi']*SW)
+        y = int(ptr['yi']*SH)
+        Y = int(pos[1])
+        X = int(pos[0]+l)
+        SHI, SWI = int(SH), int(SW)
+        im2[Y:Y+SHI, X:X+SWI] = im[y:y+SHI, l+x:l+x+SWI]
+        l += SWI
 
 
-myIm = 255 * np.ones((300, 300, 3), dtype=np.uint8)
-drawNSFreeFont(myIm, (20, 20), "TEST123")
+myIm = 127 * np.ones((300, 300, 3), dtype=np.uint8)
+drawNSFreeFont(myIm, (50, 120), "TEST")
 
 cv2.imshow('test', myIm)
 cv2.waitKey(0)
