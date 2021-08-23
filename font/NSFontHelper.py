@@ -23,13 +23,15 @@ ROWS, COLS = 7, 6
 SW = W//COLS
 SH = int(SW*.915)
 
-class Ch:
-    def __init__(self,xi,yi,ch):
-        self.xi=xi
-        self.yi=yi
-        self.ch=ch
 
-elements={
+class Ch:
+    def __init__(self, xi, yi, ch):
+        self.xi = xi
+        self.yi = yi
+        self.ch = ch
+
+
+elements = {
     Ch(0,0,'A'),Ch(1,0,'B'),Ch(2,0,'C'),Ch(3,0,'D'),Ch(4,0,'E'),Ch(5,0,'F'),
     Ch(0,1,'G'),Ch(1,1,'H'),Ch(2,1,'I'),Ch(3,1,'J'),Ch(4,1,'K'),Ch(5,1,'L'),
     Ch(0,2,'M'),Ch(1,2,'N'),Ch(2,2,'O'),Ch(3,2,'P'),Ch(4,2,'Q'),Ch(5,2,'R'),
