@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.056568542"
-     inkscape:cx="1059.823"
-     inkscape:cy="-139.84492"
+     inkscape:zoom="0.08"
+     inkscape:cx="2050.5915"
+     inkscape:cy="768.64204"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -2107,5 +2107,11 @@
        id="path5993"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:40;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 1513.519,-144.76435 -0.1861,224.507734 179.1873,-0.818616"
+       id="path5995"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
   </g>
 </svg>
