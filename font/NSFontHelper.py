@@ -94,3 +94,4 @@ drawNSFreeFont(myIm, (20, 130), "ORIGINAL")
 
 cv2.imshow('test', myIm)
 cv2.waitKey(0)
+
