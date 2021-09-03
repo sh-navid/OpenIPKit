@@ -9,6 +9,15 @@ ___
 
 
 ## Draw Helper
+## Draw Chess Grid
+~~~python
+import scripts.nsdraw as draw
+im = draw.chessGrid(im)
+~~~
+
+![im](showcase/_grid1.png)
+
+
 ### Draw Star
 
 ~~~python

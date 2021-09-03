@@ -5,33 +5,35 @@ def fill(im, pos=(0, 0), color=(0, 0, 0), diff=0):
     pass
 
 
-def tresh_channel(im, thresh, channel=0):
+def treshChannel(im, thresh, channel=0):
+    im = im.copy()
     im[np.where(im[:, :, channel] < thresh)] = 0
     im[np.where(im[:, :, channel] >= thresh)] = 255
     return im
 
 
-def tresh_simple(im, thresh):
+def treshSimple(im, thresh):
+    im = im.copy()
     im[np.where(im < thresh)] = 0
     im[np.where(im >= thresh)] = 255
     return im
 
 
-GRAY_MODE_MEAN = 1
-GRAY_MODE_GREEN = 2
-GRAY_MODE_BLUE_GREEN = 3
+GRAY_MODE_A = 1
+GRAY_MODE_B = 2
+GRAY_MODE_C = 3
 
 
-def toGray(im, graymode=GRAY_MODE_MEAN, conv2int=False):
-    B, G, R = split(im)
+def toGray(im, graymode=GRAY_MODE_A, floatmode=True):
+    b, g, r = split(im)
     out = None
-    if graymode == GRAY_MODE_MEAN:
-        out = 0.33333*R + 0.33333*G + 0.33333*B
-    elif graymode == GRAY_MODE_GREEN:
-        out = 0.2*R + 0.7*G + 0.1*B
+    if graymode == GRAY_MODE_A:
+        out = 0.3*r + 0.3*g + 0.4*b
+    elif graymode == GRAY_MODE_B:
+        out = 0.2*r + 0.7*g + 0.1*b
     else:
-        out = 0.3*R + 0.6*G + 0.1*B
-    return np.array(out).astype(np.uint8) if conv2int else out
+        out = 0.3*r + 0.6*g + 0.1*b
+    return np.array(out).astype(np.uint8) if not floatmode else out
 
 
 def toBGR(im):
@@ -48,3 +50,20 @@ def split(im):
 
 def merge(c1, c2, c3):
     return np.dstack((c1, c2, c3))
+
+
+def tinning(im):
+    pass
+
+
+def ticking(im):
+    pass
+
+
+KERNEL_TYPE_RECT = 1
+
+
+def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
+    if kerneltype == KERNEL_TYPE_RECT:
+        return np.ones(size)
+    return None
