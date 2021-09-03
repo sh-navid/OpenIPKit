@@ -64,26 +64,6 @@ def star(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT
         last = pts[idx]
 
 
-def poly(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    pass
-
-
-def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasArrow=False):
-    """
-    pt1: (x1,y1)
-    pt2: (x2,y2)
-    """
-    fn = cv2.line if not hasArrow else cv2.arrowedLine
-    type = 'lineType' if not hasArrow else 'line_type'
-    eval(f'''fn(
-        im,
-        pt1={arh.toInt1dArray(pt1)},
-        pt2={arh.toInt1dArray(pt2)},
-        color={color},
-        thickness={int(thickness)},
-        {type}=cv2.LINE_AA
-    )''')
-
 
 def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
     c1 = (arrowType == MULTILINE_MULTIPLE_ARROW)
