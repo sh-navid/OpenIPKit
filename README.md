@@ -1,8 +1,8 @@
 # PyHelper
 <pre>
-<strikethrough>
+~
 This module is a set of helper functions for OpenCV, ImageProcessing, ComputerVision and Python.
-</strikethrough>
+~
 </pre>
 ___
 
