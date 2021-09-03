@@ -15,6 +15,47 @@ def line(im, pt1, pt2, color=(0, 0, 0), thickness=5):
         im[y-rad:y-rad+thickness, x-rad:x-rad+thickness] = 0
     return im
 
+def rect(im):
+    return im
+
+def ellipes(im):
+    return im
+
+def circle(im):
+    return im
+
+def hPolygon(im):
+    return im
+
+def polygon(im):
+    return im
+
+def multiline(im):
+    return im
+
+def marker(im):
+    return im
+
+def vText(im):
+    '''
+    Use vector font
+    '''
+    return im
+
+def rText(im):
+    '''
+    Use raster bitmap
+    '''
+    return im
+
+def curve(im):
+    return im
+
+def triangle(im):
+    return im
+
+def star(im):
+    return im
 
 def chessGrid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 255, 255), thickness: int = 50):
     '''
