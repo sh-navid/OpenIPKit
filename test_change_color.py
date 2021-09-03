@@ -7,8 +7,8 @@
 # Add preprocessors
 #########################################################
 import cv2
+import sys
 import scripts.drawHelper as drw
-import scripts.osHelper as osh
 from scripts.colorHelper import *
 import numpy as np
 
@@ -16,7 +16,7 @@ import numpy as np
 # Source code
 #########################################################
 
-im = cv2.imread(osh.getPath(__file__)+r'/media/back.png')
+im = cv2.imread(sys.path[0]+'/media/back.png')
 
 h1 = changeHue(im, hue=0)
 h2 = changeHue(im, hue=90)

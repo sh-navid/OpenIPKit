@@ -8,7 +8,6 @@
 #########################################################
 import cv2
 import scripts.drawHelper as drw
-import scripts.osHelper as osh
 import scripts.mathHelper as mth
 from scripts.colorHelper import *
 

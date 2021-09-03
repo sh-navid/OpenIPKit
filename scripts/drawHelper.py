@@ -10,7 +10,6 @@ I want to add more functionality to opencv
 import cv2
 import math
 import numpy as np
-import scripts.osHelper as osh
 import scripts.mathHelper as mth
 import scripts.arrayHelper as arh
 
