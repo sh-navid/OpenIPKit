@@ -9,8 +9,9 @@
 import math
 import numpy as np
 import scripts.nsproc as proc
-import scripts.nsmath as mth
+import scripts.nsmath as nmth
 import scripts.nsdraw as draw
+import scripts.nsarray as arr
 
 #########################################################
 # Constants
@@ -64,7 +65,7 @@ def star(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT
 
 def multiline(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
     c1 = (arrowType == MULTILINE_MULTIPLE_ARROW)
-    pts = arh.toInt2dArray(pts)
+    pts = arr.toInt2dArray(pts)
     last = pts[0]
     num = len(pts)
     for i in range(1, num):
@@ -72,7 +73,7 @@ def multiline(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowTyp
 
         c2 = (arrowType == MULTILINE_ARROW_END and i == num-1)
         if c1 or c2:
-            dx, dy = mth.dXY(last, pts[i])
+            dx, dy = nmth.dXY(last, pts[i])
             deg = math.degrees(math.atan(dy/dx))
             if dx < 0:
                 deg -= 180

@@ -1,4 +1,4 @@
-import scripts.nsmath as math
+import scripts.nsmath as nmth
 import numpy as np
 
 
@@ -73,7 +73,7 @@ def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
         cx, cy = size[0]//2, size[1]//2
         for i in range(0, size[0]):
             for j in range(0, size[1]):
-                d = math.dist((i, j), (cx, cy))
+                d = nmth.dist((i, j), (cx, cy))
                 if(d > cx and d > cy):
                     k[i, j] = 0
         return k
