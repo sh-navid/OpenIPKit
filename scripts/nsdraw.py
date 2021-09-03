@@ -1,3 +1,4 @@
+import numpy as np
 import scripts.nsproc as proc
 
 
@@ -7,7 +8,7 @@ def line(im, pt1, pt2, color=(0, 0, 0), thickness=5):
     pass
 
 
-def chessGrid(im, color1=(0, 0, 0), color2=(255, 255, 255), thickness=50):
+def chessGrid(im:np.ndarray, color1:tuple=(0, 0, 0), color2:tuple=(255, 255, 255), thickness:int=50):
     '''
     '''
     # FIXME: check this in different sizes; does not work sometimes
