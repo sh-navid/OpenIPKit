@@ -2,9 +2,13 @@
 <strikethrough>
 This module is a set of helper functions for OpenCV, ImageProcessing, ComputerVision and Python.
 </strikethrough>
+
 ___
+
 I decided to remove dependency from modules and make some extra functionality for image processing and computer vision from scratch.
+
 ___
+
 
 ## Draw Helper
 ### Draw Star
