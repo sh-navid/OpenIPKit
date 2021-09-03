@@ -22,11 +22,11 @@ GRAY_MODE_GREEN = 2
 GRAY_MODE_BLUE_GREEN = 3
 
 
-def bgr2gry(im, graymode=GRAY_MODE_MEAN, conv2int=False):
+def toGray(im, graymode=GRAY_MODE_MEAN, conv2int=False):
     B, G, R = split(im)
     out = None
     if graymode == GRAY_MODE_MEAN:
-        out = 0.333*R + 0.333*G + 0.333*B
+        out = 0.33333*R + 0.33333*G + 0.33333*B
     elif graymode == GRAY_MODE_GREEN:
         out = 0.2*R + 0.7*G + 0.1*B
     else:
@@ -34,8 +34,9 @@ def bgr2gry(im, graymode=GRAY_MODE_MEAN, conv2int=False):
     return np.array(out).astype(np.uint8) if conv2int else out
 
 
-def gry2bgr(im):
+def toBGR(im):
     return merge(im, im, im)
+
 
 def split(im):
     # FIXME: can you make this more global
@@ -43,6 +44,7 @@ def split(im):
     c2 = im[:, :, 1]
     c3 = im[:, :, 2]
     return c1, c2, c3
+
 
 def merge(c1, c2, c3):
     return np.dstack((c1, c2, c3))

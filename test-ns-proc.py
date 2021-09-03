@@ -5,13 +5,13 @@ import scripts.nsproc as proc
 
 im = cv2.imread(sys.path[0]+'/media/back.png')
 
-gry1 = proc.bgr2gry(im, proc.GRAY_MODE_MEAN)
-gry2 = proc.bgr2gry(im, proc.GRAY_MODE_GREEN)
-gry3 = proc.bgr2gry(im, proc.GRAY_MODE_BLUE_GREEN)
+gry1 = proc.toGray(im, proc.GRAY_MODE_MEAN)
+gry2 = proc.toGray(im, proc.GRAY_MODE_GREEN)
+gry3 = proc.toGray(im, proc.GRAY_MODE_BLUE_GREEN)
 
-gry1 = proc.gry2bgr(gry1)
-gry2 = proc.gry2bgr(gry2)
-gry3 = proc.gry2bgr(gry3)
+gry1 = proc.toBGR(gry1)
+gry2 = proc.toBGR(gry2)
+gry3 = proc.toBGR(gry3)
 
 print(im)
 
