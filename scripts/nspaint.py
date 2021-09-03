@@ -96,11 +96,6 @@ def triangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR
                         color=color, thickness=thickness)
 
 
-
-def drawSquareFromCenter():
-    pass
-
-
 def drawSquareFromTopLeft():
     pass
 
