@@ -2,23 +2,20 @@
 # Author: sh-navid
 #########################################################
 '''
-I want to add more functionality to opencv
 '''
 #########################################################
 # Add preprocessors
 #########################################################
-import cv2
 import math
 import numpy as np
-import scripts.mathHelper as mth
-import scripts.arrayHelper as arh
+import scripts.nsproc as proc
+import scripts.nsmath as math
 
 #########################################################
 # Constants
 #########################################################
 DEFAULT_COLOR = (128, 0, 200)
 DEFAULT_TICKNESS = 5
-DEFAULT_MARKER = cv2.MARKER_CROSS
 DEFAULT_MARKER_SIZE = 5
 DEFAULT_ROTATION = -90
 DEFAULT_ARC = 360
@@ -32,19 +29,7 @@ MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'M
 # Fixme: this is buggy; fix it
 
 
-def drawMarker(im, pt, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, markerType=DEFAULT_MARKER, markerSize=DEFAULT_MARKER_SIZE):
-    cv2.drawMarker(
-        im,
-        pos=pt,
-        color=color,
-        markerType=markerType,
-        thickness=int(thickness),
-        markerSize=markerSize,
-        line_type=cv2.LINE_AA
-    )
-
-
-def drawHomogeneousPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def homogeneousPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, angle = arc/points, rotation
     pts = []
     for i in range(0, points):
@@ -61,7 +46,7 @@ def drawHomogeneousPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION
         drawLine(im, last, pts[0], color=color, thickness=thickness)
 
 
-def drawStar(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def star(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, angle = 360/points, rotation
     pts = []
     for i in range(0, points):
@@ -79,15 +64,8 @@ def drawStar(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEF
         last = pts[idx]
 
 
-def drawPoly(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    cv2.polylines(
-        im,
-        pts=[np.int32(pts)],
-        isClosed=True,
-        color=color,
-        thickness=int(thickness),
-        lineType=cv2.LINE_AA
-    )
+def poly(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+    pass
 
 
 def drawLine(im, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, hasArrow=False):
@@ -130,12 +108,12 @@ def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arro
 
 def drawCircle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     # I think this function is not optimized; for now its better to use OpenCV builtin function
-    drawHomogeneousPoly(im, center, radius, rotation=rotation, arc=arc,
+    homogeneousPoly(im, center, radius, rotation=rotation, arc=arc,
                         endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
 
 
 def drawTriangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    drawHomogeneousPoly(im, center, radius, points=3, rotation=rotation,
+    homogeneousPoly(im, center, radius, points=3, rotation=rotation,
                         color=color, thickness=thickness)
 
 

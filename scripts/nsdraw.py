@@ -3,18 +3,23 @@ import scripts.nsproc as proc
 import scripts.nsmath as math
 
 
-def line(im, pt1, pt2, color=(0, 0, 0), thickness=5):
-    k = proc.kernel((thickness, thickness), proc.KERNEL_TYPE_CIRCULAR)
-    print(k)
-    k = proc.merge(k, k, k)
-    k[np.where(k[:, :, 0] == 1)] = color
+def line(im, pt1, pt2, color=(0, 0, 0), thickness=5, aa=True):
+    kernel = proc.kernel((thickness, thickness),
+        kerneltype=proc.KERNEL_TYPE_CIRCULAR if aa else proc.KERNEL_TYPE_RECT)
+    block = proc.merge(kernel, kernel, kernel)
+    block[np.where(kernel == 1)] = color
     m, b = math.lineEq(pt1, pt2)
     dist = math.dist(pt1, pt2)
     rad = thickness//2
-    for i in range(0, math.absDXY(pt1,pt2)[0],2):
+    for i in range(0, math.absDXY(pt1, pt2)[0], 1):
         x = pt1[0]+i
         y = pt1[1]+int(math.calcLineY(m, b, x))
-        im[y-rad:y-rad+thickness, x-rad:x-rad+thickness] = k
+        if not aa:
+            im[y-rad:y-rad+thickness, x-rad:x-rad+thickness] = block
+        else:
+            imC = im[y-rad:y-rad+thickness, x-rad:x-rad+thickness]
+            imC[np.where(kernel == 1)] = block[np.where(kernel == 1)]
+            im[y-rad:y-rad+thickness, x-rad:x-rad+thickness] = imC
     return im
 
 

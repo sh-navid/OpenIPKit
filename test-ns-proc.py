@@ -21,14 +21,16 @@ bw = proc.treshSimple(gry3, 240)
 # cv2.waitKey(0)
 
 ##############################################################################
-#im = cv2.imread(sys.path[0]+'/media/im.png')
-#im = draw.chessGrid(im)
-#im = draw.chessGrid(im, color1=(127,0,255),color2=(200,200,200),thickness=80)
-#print(signature(draw.chessGrid))
+# im = cv2.imread(sys.path[0]+'/media/im.png')
+# im = draw.chessGrid(im)
+# im = draw.chessGrid(im, color1=(127,0,255),color2=(200,200,200),thickness=20)
+# print(signature(draw.chessGrid))
+# cv2.imshow('draw', im)
+# cv2.waitKey(0)
 
 ##############################################################################
 im = cv2.imread(sys.path[0]+'/media/im.png')
-im = draw.line(im,(10,10),(200,200),color=(127,0,255),thickness=11)
+im = draw.line(im,(10,10),(200,200),color=(127,0,255),thickness=2,aa=True)
 
 cv2.imshow('draw', im)
 cv2.waitKey(0)
