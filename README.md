@@ -9,7 +9,7 @@ ___
 
 
 ## Draw Helper
-## Draw Chess Grid
+### Draw Chess Grid
 ~~~python
 import scripts.nsdraw as draw
 im = draw.chessGrid(im)
