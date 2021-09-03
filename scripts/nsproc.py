@@ -23,9 +23,7 @@ GRAY_MODE_BLUE_GREEN = 3
 
 
 def bgr2gry(im, graymode=GRAY_MODE_MEAN, conv2int=False):
-    B = im[:, :, 0]
-    G = im[:, :, 1]
-    R = im[:, :, 2]
+    B,G,R=split(im)
     out = None
     if graymode == GRAY_MODE_MEAN:
         out = 0.333*R + 0.333*G + 0.333*B
@@ -35,8 +33,9 @@ def bgr2gry(im, graymode=GRAY_MODE_MEAN, conv2int=False):
         out = 0.299*R + 0.587*G + 0.114*B
     return np.array(out).astype(int) if conv2int else out
 
+
 def split(im):
     c1 = im[:, :, 0]
     c2 = im[:, :, 1]
     c3 = im[:, :, 2]
-    return c1,c2,c3
+    return c1, c2, c3
