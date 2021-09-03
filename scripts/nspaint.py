@@ -9,7 +9,8 @@
 import math
 import numpy as np
 import scripts.nsproc as proc
-import scripts.nsmath as math
+import scripts.nsmath as mth
+import scripts.nsdraw as draw
 
 #########################################################
 # Constants
@@ -26,9 +27,6 @@ MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'M
 # Functions
 #########################################################
 
-# Fixme: this is buggy; fix it
-
-
 def homogeneousPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, angle = arc/points, rotation
     pts = []
@@ -40,10 +38,10 @@ def homogeneousPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, ar
         angle += off
     last = pts[0]
     for i in range(1, points):
-        drawLine(im, last, pts[i], color=color, thickness=thickness)
+        draw.line(im, last, pts[i], color=color, thickness=thickness)
         last = pts[i]
     if endLastLine:
-        drawLine(im, last, pts[0], color=color, thickness=thickness)
+        draw.line(im, last, pts[0], color=color, thickness=thickness)
 
 
 def star(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
@@ -60,7 +58,7 @@ def star(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT
         idx += points-2
         if idx > points-1:
             idx -= points
-        drawLine(im, last, pts[idx], color=color, thickness=thickness)
+        draw.line(im, last, pts[idx], color=color, thickness=thickness)
         last = pts[idx]
 
 
@@ -70,7 +68,7 @@ def multiline(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowTyp
     last = pts[0]
     num = len(pts)
     for i in range(1, num):
-        drawLine(im, last, pts[i], color=color, thickness=thickness)
+        draw.line(im, last, pts[i], color=color, thickness=thickness)
 
         c2 = (arrowType == MULTILINE_ARROW_END and i == num-1)
         if c1 or c2:
@@ -86,7 +84,11 @@ def multiline(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowTyp
 
 
 def circle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    # I think this function is not optimized; for now its better to use OpenCV builtin function
+    """
+    DEPRECATED
+    This is not optimized
+    Rebuild it using x2+y2=r2 later
+    """
     homogeneousPoly(im, center, radius, rotation=rotation, arc=arc,
                         endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
 
