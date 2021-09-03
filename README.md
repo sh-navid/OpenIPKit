@@ -4,8 +4,7 @@ This module is a set of helper functions for OpenCV, ImageProcessing, ComputerVi
 ~
 ___
 
-I decided to remove dependency from modules and make some extra functionality for image processing and computer vision from scratch.
-
+**I decided to remove dependency from other modules and just make some extra functionality for image processing and computer vision from scratch.**
 ___
 
 
