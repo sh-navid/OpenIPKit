@@ -32,6 +32,10 @@ def absDXY(pt1, pt2):
 
 
 def lineEq(pt1, pt2):
+    '''
+    line eq is y=mx+b
+    return m, b
+    '''
     x1, y1 = pt1[:2]
     x2, y2 = pt2[:2]
     m = (y2-y1)/(x2-x1)
