@@ -64,8 +64,7 @@ def star(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT
         last = pts[idx]
 
 
-
-def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
+def multiline(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
     c1 = (arrowType == MULTILINE_MULTIPLE_ARROW)
     pts = arh.toInt2dArray(pts)
     last = pts[0]
@@ -80,19 +79,19 @@ def drawMultiLine(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arro
             if dx < 0:
                 deg -= 180
             end=(last[0]+(dx/2), last[1]+(dy/2)) if c1 else pts[i]
-            drawTriangle(im, end, thickness *
+            triangle(im, end, thickness *
                          2, rotation=deg, color=color, thickness=thickness)
 
         last = pts[i]
 
 
-def drawCircle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def circle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     # I think this function is not optimized; for now its better to use OpenCV builtin function
     homogeneousPoly(im, center, radius, rotation=rotation, arc=arc,
                         endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
 
 
-def drawTriangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def triangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     homogeneousPoly(im, center, radius, points=3, rotation=rotation,
                         color=color, thickness=thickness)
 
