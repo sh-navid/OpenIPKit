@@ -66,17 +66,15 @@ KERNEL_TYPE_CIRCULAR = 2
 
 
 def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
-    k=np.ones(size)
+    k = np.ones(size)
     if kerneltype == KERNEL_TYPE_RECT:
         return k
-    elif kerneltype==KERNEL_TYPE_CIRCULAR:
-        cx=size[0]//2
-        cy=size[1]//2
-        for i in range(0,size[0]):
-            for j in range(0,size[1]):
-                d=math.dist((i,j),(cx,cy))
-                print(d)
-                if(d>cx and d>cy):
-                    k[i,j]=0
+    elif kerneltype == KERNEL_TYPE_CIRCULAR:
+        cx, cy = size[0]//2, size[1]//2
+        for i in range(0, size[0]):
+            for j in range(0, size[1]):
+                d = math.dist((i, j), (cx, cy))
+                if(d > cx and d > cy):
+                    k[i, j] = 0
         return k
     return None
