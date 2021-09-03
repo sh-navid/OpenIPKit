@@ -16,10 +16,10 @@ im = draw.chessGrid(im)
 ~~~
 
 **Parameters**  
-- im: numpy.ndarray  
-- color1: tuple  
-- color2: tuple  
-- thickness: int  
+- **im:** numpy.ndarray  
+- **color1:** tuple  
+- **color2:** tuple  
+- **thickness:** int  
 
 ![im](showcase/_grid1.png)
 
