@@ -31,7 +31,7 @@ def bgr2gry(im, graymode=GRAY_MODE_MEAN, conv2int=False):
         out = 0.2*R + 0.7*G + 0.1*B
     else:
         out = 0.3*R + 0.6*G + 0.1*B
-    return np.array(out).astype(int) if conv2int else out
+    return np.array(out).astype(np.uint8) if conv2int else out
 
 
 def gry2bgr(im):
@@ -45,5 +45,4 @@ def split(im):
     return c1, c2, c3
 
 def merge(c1, c2, c3):
-    # FIXME: think about this - this may not be true
-    return np.array([c1, c2, c3])
+    return np.dstack((c1, c2, c3))
