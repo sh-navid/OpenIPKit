@@ -28,7 +28,7 @@ bw = proc.treshSimple(gry3, 240)
 
 ##############################################################################
 im = cv2.imread(sys.path[0]+'/media/im.png')
-im = draw.line(im,(10,10),(200,200))
+im = draw.line(im,(10,10),(200,200),color=(127,0,255))
 
 cv2.imshow('draw', im)
 cv2.waitKey(0)

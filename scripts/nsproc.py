@@ -61,9 +61,15 @@ def ticking(im):
 
 
 KERNEL_TYPE_RECT = 1
+KERNEL_TYPE_CIRCULAR = 2
 
 
 def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
     if kerneltype == KERNEL_TYPE_RECT:
         return np.ones(size)
+    elif kerneltype==KERNEL_TYPE_CIRCULAR:
+        k=np.ones(size)
+        cx=size[0]//2
+        cy=size[1]//2
+        return k
     return None

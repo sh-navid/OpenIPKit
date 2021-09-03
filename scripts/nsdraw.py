@@ -4,37 +4,47 @@ import scripts.nsmath as math
 
 
 def line(im, pt1, pt2, color=(0, 0, 0), thickness=5):
-    k = proc.kernel((thickness, thickness), proc.KERNEL_TYPE_RECT)
+    k = proc.kernel((thickness, thickness), proc.KERNEL_TYPE_CIRCULAR)
+    print(k)
+    k = proc.merge(k, k, k)
+    k[np.where(k[:, :, 0] == 1)] = color
     m, b = math.lineEq(pt1, pt2)
     dist = math.dist(pt1, pt2)
-    num = dist//thickness
     rad = thickness//2
-    for i in range(0, int(num)):
-        x = pt1[0]+int(i*thickness)
+    for i in range(0, math.absDXY(pt1,pt2)[0],2):
+        x = pt1[0]+i
         y = pt1[1]+int(math.calcLineY(m, b, x))
-        im[y-rad:y-rad+thickness, x-rad:x-rad+thickness] = 0
+        im[y-rad:y-rad+thickness, x-rad:x-rad+thickness] = k
     return im
+
 
 def rect(im):
     return im
 
+
 def ellipes(im):
     return im
+
 
 def circle(im):
     return im
 
+
 def hPolygon(im):
     return im
+
 
 def polygon(im):
     return im
 
+
 def multiline(im):
     return im
 
+
 def marker(im):
     return im
+
 
 def vText(im):
     '''
@@ -42,20 +52,25 @@ def vText(im):
     '''
     return im
 
+
 def rText(im):
     '''
     Use raster bitmap
     '''
     return im
 
+
 def curve(im):
     return im
+
 
 def triangle(im):
     return im
 
+
 def star(im):
     return im
+
 
 def chessGrid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 255, 255), thickness: int = 50):
     '''
