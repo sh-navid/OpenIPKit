@@ -63,6 +63,7 @@ def ticking(im):
 
 KERNEL_TYPE_RECT = 1
 KERNEL_TYPE_CIRCULAR = 2
+KERNEL_TYPE_CIRCULAR_FADE = 3
 
 
 def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
@@ -74,7 +75,15 @@ def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
         for i in range(0, size[0]):
             for j in range(0, size[1]):
                 d = nmth.dist((i, j), (cx, cy))
-                if(d > cx and d > cy):
+                if(d >= cx and d >= cy):
                     k[i, j] = 0
+        return k
+    elif kerneltype == KERNEL_TYPE_CIRCULAR_FADE:
+        k=kernel(size,KERNEL_TYPE_CIRCULAR)
+        cx, cy = size[0]//2, size[1]//2
+        for i in range(0, size[0]):
+            for j in range(0, size[1]):
+                k[i,j]/=(abs(cx-i)+abs(cy-j))+1
+                k[i,j]=float("{0:.1f}".format(k[i,j]))
         return k
     return None

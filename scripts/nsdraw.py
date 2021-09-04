@@ -8,30 +8,31 @@ def line(im, pt1, pt2, color=(0, 0, 0), thickness=5, aa=False):
     '''
     aa parameter is @deprecated; you can safely remove it
     '''
-    kt = proc.KERNEL_TYPE_CIRCULAR
-    kernel = proc.kernel((thickness, thickness),
-                         kerneltype=kt if aa else proc.KERNEL_TYPE_RECT)
+    kt = proc.KERNEL_TYPE_CIRCULAR_FADE
+    t=thickness
+    kernel = proc.kernel((t, t),proc.KERNEL_TYPE_CIRCULAR)
+
     block = proc.merge(kernel, kernel, kernel)
-    block[np.where(kernel == 1)] = color
+    block[np.where(kernel != 0)] = color
     m, b = nmth.lineEq(pt1, pt2)
+    dx, dy = nmth.dXY(pt1, pt2)
     r1 = int(thickness/2)
     r2 = thickness-r1
 
-    dx, dy = nmth.dXY(pt1, pt2)
-
     def draw(x, y):
         roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
-        roi[np.where(kernel == 1)] = block[np.where(kernel == 1)]
+        roi[np.where(kernel != 0)] = block[np.where(kernel != 0)]
         im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
+    scale = 1
     if abs(dx) >= abs(dy):
-        for i in range(0, int(dx), 1 if dx > 0 else -1):
-            x = pt1[0]+i
+        for i in range(0, int(dx*scale), 1 if dx > 0 else -1):
+            x = pt1[0]+i/scale
             y = nmth.calcLineY(m, b, x)
             draw(x, y)
     else:
-        for i in range(0, int(dy), 1 if dy > 0 else -1):
-            y = pt1[1]+i
+        for i in range(0, int(dy*scale), 1 if dy > 0 else -1):
+            y = pt1[1]+i/scale
             x = nmth.calcLineX(m, b, y)
             draw(x, y)
     return im
