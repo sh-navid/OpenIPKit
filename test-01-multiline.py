@@ -30,15 +30,15 @@ draw.line(im, (240, 307), (330, 40), color=rc())
 
 x = 0
 pts = [(418+x, 303), (461+x, 195),  (539+x, 140), (520+x, 40)]
-paint.multiline(im, pts, color=rc(), arrowType=paint.MULTILINE_ARROW_NONE)
+draw.multiline(im, pts, color=rc(), arrowType=draw.MULTILINE_ARROW_NONE)
 
 x = 205
 pts = [(418+x, 303), (461+x, 195),  (539+x, 140), (520+x, 40)]
-paint.multiline(im, pts, color=rc(), arrowType=paint.MULTILINE_ARROW_END)
+draw.multiline(im, pts, color=rc(), arrowType=draw.MULTILINE_ARROW_END)
 
 x = 410
 pts = [(418+x, 303), (461+x, 195),  (539+x, 140), (520+x, 40)]
-paint.multiline(im, pts, color=rc(), arrowType=paint.MULTILINE_MULTIPLE_ARROW)
+draw.multiline(im, pts, color=rc(), arrowType=draw.MULTILINE_MULTIPLE_ARROW)
 
 
 cv2.imshow('Test', im)

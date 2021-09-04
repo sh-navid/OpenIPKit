@@ -20,7 +20,6 @@ DEFAULT_TICKNESS = 5
 DEFAULT_MARKER_SIZE = 5
 DEFAULT_ROTATION = -90
 DEFAULT_ARC = 360
-
 MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'MLAE', 'MLMA'
 
 #########################################################
@@ -130,7 +129,7 @@ def chessGrid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 2
             x = ww*thickness
             im[y:y+thickness, x:x+thickness] = color1
     return im
-    
+
 
 def homogeneousPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, angle = arc/points, rotation
