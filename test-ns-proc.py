@@ -34,16 +34,16 @@ bw = proc.treshSimple(gry3, 240)
 im = cv2.imread(sys.path[0]+'/media/im.png')
 H, W = im.shape[:2]
 rc = nsc.randomColor
-im = draw.line(im, (10, 10), (W-10, H-10), color=rc(), thickness=5, aa=True) #TRUE
-im = draw.line(im, (W-50, H-50), (50, 50), color=rc(), thickness=5, aa=True) #TRUE
+im = draw.line(im, (10, 10), (W-10, H-10), color=rc(), thickness=2, aa=True) #TRUE
+im = draw.line(im, (W-50, H-50), (50, 50), color=rc(), thickness=3, aa=True) #TRUE
 
-im = draw.line(im, (W//2, 10), (W-10, H-10),color=rc(), thickness=5, aa=True)
-im = draw.line(im, (W-50, 10), (W-10, H-10),color=rc(), thickness=5, aa=True)
-im = draw.line(im, (W-20, 10), (W-10, H-10),color=rc(), thickness=5, aa=True)
-im = draw.line(im, (W-10, 10), (W-10, H-10),color=rc(), thickness=5, aa=True)
-#im = draw.line(im, (W-10, 10), (10, H-10),color=rc(), thickness=5, aa=True)
-#im = draw.line(im, (10, 10), (10, H-10),color=rc(), thickness=5, aa=True)
-#im = draw.line(im, (10, 10), (W-10, 10),color=rc(), thickness=5, aa=True)
+im = draw.line(im, (W//2, 10), (W-10, H-10),color=rc(), thickness=4, aa=True)
+im = draw.line(im, (W-50, 10), (W-10, H-10),color=rc(), thickness=6, aa=True)
+im = draw.line(im, (W-20, 10), (W-10, H-10),color=rc(), thickness=8, aa=True)
+im = draw.line(im, (W-10, 10), (W-10, H-10),color=rc(), thickness=10, aa=True)
+im = draw.line(im, (W-10, 10), (10, H-10),color=rc(), thickness=12, aa=True)
+im = draw.line(im, (10, 10), (10, H-10),color=rc(), thickness=16, aa=True)
+im = draw.line(im, (10, 10), (W-10, 10),color=rc(), thickness=18, aa=True)
 cv2.imshow('draw', im)
 cv2.waitKey(0)
 

@@ -5,9 +5,10 @@ import scripts.nsmath as nmth
 
 
 def line(im, pt1, pt2, color=(0, 0, 0), thickness=5, aa=False):
-    kt=proc.KERNEL_TYPE_CIRCULAR
-    thickness = 1
-
+    '''
+    aa parameter is @deprecated; you can safely remove it
+    '''
+    kt = proc.KERNEL_TYPE_CIRCULAR
     kernel = proc.kernel((thickness, thickness),
                          kerneltype=kt if aa else proc.KERNEL_TYPE_RECT)
     block = proc.merge(kernel, kernel, kernel)
@@ -19,21 +20,17 @@ def line(im, pt1, pt2, color=(0, 0, 0), thickness=5, aa=False):
     dx, dy = nmth.dXY(pt1, pt2)
 
     def draw(x, y):
-        if not aa:
-            im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = 127
-        else:
-            roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
-            roi[np.where(kernel == 1)] = block[np.where(kernel == 1)]
-            im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
+        roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
+        roi[np.where(kernel == 1)] = block[np.where(kernel == 1)]
+        im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
-    aa = False
     if abs(dx) >= abs(dy):
-        for i in range(0, int(dx),1 if dx>0 else -1):
+        for i in range(0, int(dx), 1 if dx > 0 else -1):
             x = pt1[0]+i
             y = nmth.calcLineY(m, b, x)
             draw(x, y)
     else:
-        for i in range(0, int(dy),1 if dy>0 else -1):
+        for i in range(0, int(dy), 1 if dy > 0 else -1):
             y = pt1[1]+i
             x = nmth.calcLineX(m, b, y)
             draw(x, y)
