@@ -36,8 +36,8 @@ def lineEq(pt1, pt2):
     line eq is y=mx+b
     return m, b
     '''
-    dx,dy=dXY(pt1,pt2)
-    m=0 if dx==0 else dy/dx
+    dx, dy = dXY(pt1, pt2)
+    m = dy if dx == 0 else dy/dx
     # y=mx+b => b=y-mx
     b = pt2[1]-(m*pt2[0])
     return m, b
