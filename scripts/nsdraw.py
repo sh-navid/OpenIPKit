@@ -69,45 +69,29 @@ def ellipes(im):
     return im
 
 
-def hPolygon(im):
-    return im
-
-
 def polygon(im):
     return im
 
 
-def multiline(im):
+def marker(im: np.ndarray):
     return im
 
 
-def marker(im):
-    return im
-
-
-def vText(im):
+def vText(im: np.ndarray):
     '''
     Use vector font
     '''
     return im
 
 
-def rText(im):
+def rText(im: np.ndarray):
     '''
     Use raster bitmap
     '''
     return im
 
 
-def curve(im):
-    return im
-
-
-def triangle(im):
-    return im
-
-
-def star(im):
+def curve(im: np.ndarray):
     return im
 
 
@@ -131,7 +115,7 @@ def chessGrid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 2
     return im
 
 
-def hPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def hPoly(im: np.ndarray, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, angle = arc/points, rotation
     pts = []
     for i in range(0, points):
@@ -148,7 +132,7 @@ def hPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_
         line(im, last, pts[0], color=color, thickness=thickness)
 
 
-def star(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def star(im: np.ndarray, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, angle = 360/points, rotation
     pts = []
     for i in range(0, points):
@@ -166,7 +150,7 @@ def star(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, color=DEFAULT
         last = pts[idx]
 
 
-def multiline(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
+def multiline(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowType=MULTILINE_ARROW_NONE):
     c1 = (arrowType == MULTILINE_MULTIPLE_ARROW)
     pts = arr.toInt2dArray(pts)
     last = pts[0]
@@ -187,7 +171,7 @@ def multiline(im, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, arrowTyp
         last = pts[i]
 
 
-def circle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def circle(im: np.ndarray, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     """
     DEPRECATED
     This is not optimized
@@ -197,7 +181,7 @@ def circle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endL
                         endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
 
 
-def triangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def triangle(im: np.ndarray, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     hPoly(im, center, radius, points=3, rotation=rotation,
                         color=color, thickness=thickness)
                         
