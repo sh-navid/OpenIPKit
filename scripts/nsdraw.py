@@ -16,7 +16,7 @@ def line(im, pt1, pt2, color=(0, 0, 0), thickness=5, aa=False):
     r1 = int(thickness/2)
     r2 = thickness-r1
 
-    dx, dy = nmth.absDXY(pt1, pt2)
+    dx, dy = nmth.dXY(pt1, pt2)
 
     def draw(x, y):
         if not aa:
@@ -27,13 +27,13 @@ def line(im, pt1, pt2, color=(0, 0, 0), thickness=5, aa=False):
             im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
     aa = False
-    if dx > dy:
-        for i in range(0, int(dx)):
+    if abs(dx) >= abs(dy):
+        for i in range(0, int(dx),1 if dx>0 else -1):
             x = pt1[0]+i
             y = pt1[1]+nmth.calcLineY(m, b, i)
             draw(x, y)
     else:
-        for i in range(0, int(dy)):
+        for i in range(0, int(dy),1 if dy>0 else -1):
             y = pt1[1]+i
             x = pt1[0]+nmth.calcLineX(m, b, i)
             draw(x, y)

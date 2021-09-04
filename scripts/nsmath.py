@@ -36,12 +36,10 @@ def lineEq(pt1, pt2):
     line eq is y=mx+b
     return m, b
     '''
-    x1, y1 = pt1[:2]
-    x2, y2 = pt2[:2]
-    div = (x2-x1)
-    m=0 if div==0 else (y2-y1)/div
+    dx,dy=dXY(pt1,pt2)
+    m=0 if dx==0 else dy/dx
     # y=mx+b => b=y-mx
-    b = y1-m*x1
+    b = pt2[1]-(m*pt2[0])
     return m, b
 
 
