@@ -26,7 +26,8 @@ rc = nsc.randomColor
 
 draw.line(im, (60, 303), (151, 40), color=rc())
 
-draw.line(im, (240, 307), (330, 40), color=rc())
+draw.multiline(im, [(240, 307), (330, 40)], color=rc(),
+               arrowType=draw.MULTILINE_ARROW_END)
 
 x = 0
 pts = [(418+x, 303), (461+x, 195),  (539+x, 140), (520+x, 40)]

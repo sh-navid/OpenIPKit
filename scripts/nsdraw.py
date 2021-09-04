@@ -131,7 +131,7 @@ def chessGrid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 2
     return im
 
 
-def homogeneousPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+def hPoly(im, center, radius, points=5, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     off, angle = arc/points, rotation
     pts = []
     for i in range(0, points):
@@ -193,11 +193,11 @@ def circle(im, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endL
     This is not optimized
     Rebuild it using x2+y2=r2 later
     """
-    homogeneousPoly(im, center, radius, rotation=rotation, arc=arc,
+    hPoly(im, center, radius, rotation=rotation, arc=arc,
                         endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
 
 
 def triangle(im, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    homogeneousPoly(im, center, radius, points=3, rotation=rotation,
+    hPoly(im, center, radius, points=3, rotation=rotation,
                         color=color, thickness=thickness)
                         

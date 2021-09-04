@@ -7,26 +7,27 @@
 # Add preprocessors
 #########################################################
 import cv2
-import scripts.drawHelper as drw
-import scripts.osHelper as osh
-from scripts.colorHelper import *
+import sys
+import numpy as np
+from inspect import signature
+import scripts.nsproc as proc
+import scripts.nsdraw as draw
+import scripts.nscolor as nsc
 
 #########################################################
 # Source code
 #########################################################
 
-dir = osh.getPath(__file__)
-im = cv2.imread(dir+r'/media/im.png')
+im = cv2.imread(sys.path[0]+'/media/im.png')
 
 h, w = im.shape[:2]
 cx, ch = w/2, h/2
-rc = randomColor
+rc = nsc.randomColor
 
-drw.drawHomogeneousPoly(im, (cx-cx/1.6, ch), ch/2, color=rc(), rotation=-90)
-drw.drawHomogeneousPoly(im, (cx, ch), ch/2, color=rc(),
-                        rotation=-90, thickness=10, points=9)
-drw.drawHomogeneousPoly(im, (cx+cx/1.6, ch), ch/2,
-                        color=rc(), points=15, thickness=30)
+draw.star(im, (cx-cx/1.6, ch), ch/2, color=rc(), rotation=-90)
+draw.star(im, (cx, ch), ch/2, color=rc(),
+             rotation=-90, thickness=10, points=9)
+draw.star(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickness=30)
 
 
 cv2.imshow('Test', im)
