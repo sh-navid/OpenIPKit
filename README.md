@@ -8,7 +8,7 @@ ___
 ___
 
 
-## Draw Helper
+## Draw Functions
 ### Draw Chess Grid
 ~~~python
 import scripts.nsdraw as draw
@@ -211,7 +211,7 @@ b5 = changeBrightness(im, val=100)
 ## Future works
 - [x] Draw arc
 - [x] Fix arrows of miltipleLines with the same pointer size
-- [~] Make a font and font-wrapper
+- [ ] Make a font and font-wrapper
 - [ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
 - [ ] Draw shaped line, dashed line, dotted line in every draw function
 - [ ] Draw bullet and other markers on every point of multiline function
@@ -224,4 +224,5 @@ b5 = changeBrightness(im, val=100)
 
 
 ## License
-**This library is licensed by MIT. But used modules, including OpenCV and Python, may have other licenses. Then; To use, consider the licenses of those modules.**
+The following two modules are used in this library. More details about each of them and the license of each:
+[OpenCV](https://github.com/opencv), [OpenCV-Python](https://github.com/opencv/opencv-python), [NumPy](https://numpy.org/about/)
