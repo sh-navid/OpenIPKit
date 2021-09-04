@@ -1,41 +1,42 @@
+from cv2 import KMEANS_RANDOM_CENTERS
 import numpy as np
 import scripts.nsproc as proc
 import scripts.nsmath as nmth
 
 
 def line(im, pt1, pt2, color=(0, 0, 0), thickness=5, aa=False):
+    kt=proc.KERNEL_TYPE_CIRCULAR
+    thickness = 1
+
     kernel = proc.kernel((thickness, thickness),
-                         kerneltype=proc.KERNEL_TYPE_CIRCULAR if aa else proc.KERNEL_TYPE_RECT)
+                         kerneltype=kt if aa else proc.KERNEL_TYPE_RECT)
     block = proc.merge(kernel, kernel, kernel)
     block[np.where(kernel == 1)] = color
     m, b = nmth.lineEq(pt1, pt2)
     r1 = int(thickness/2)
     r2 = thickness-r1
 
-    dx,dy=nmth.absDXY(pt1, pt2)
+    dx, dy = nmth.absDXY(pt1, pt2)
 
+    def draw(x, y):
+        if not aa:
+            im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = 127
+        else:
+            roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
+            roi[np.where(kernel == 1)] = block[np.where(kernel == 1)]
+            im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
-    aa=False
-    if dx>dy:
+    aa = False
+    if dx > dy:
         for i in range(0, int(dx)):
-            x = int(pt1[0]+i)
-            y = int(pt1[1]+nmth.calcLineY(m, b, x))
-            if not aa:
-                im[y-r1:y+r2, x-r1:x+r2] = 0#block
-            else:
-                roi = im[y-r1:y+r2, x-r1:x+r2]
-                roi[np.where(kernel == 1)] = block[np.where(kernel == 1)]
-                im[y-r1:y+r2, x-r1:x+r2] = roi
+            x = pt1[0]+i
+            y = pt1[1]+nmth.calcLineY(m, b, i)
+            draw(x, y)
     else:
         for i in range(0, int(dy)):
-            y = int(pt1[1]+i)
-            x = int(pt1[0]+nmth.calcLineX(m, b, y))
-            if not aa:
-                im[y-r1:y+r2, x-r1:x+r2] = 0#block
-            else:
-                roi = im[y-r1:y+r2, x-r1:x+r2]
-                roi[np.where(kernel == 1)] = block[np.where(kernel == 1)]
-                im[y-r1:y+r2, x-r1:x+r2] = roi
+            y = pt1[1]+i
+            x = pt1[0]+nmth.calcLineX(m, b, i)
+            draw(x, y)
     return im
 
 
