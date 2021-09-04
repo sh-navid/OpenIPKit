@@ -13,7 +13,6 @@ from inspect import signature
 import scripts.nsproc as proc
 import scripts.nsdraw as draw
 import scripts.nscolor as nsc
-import scripts.nspaint as paint
 
 #########################################################
 # Source code
