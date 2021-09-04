@@ -39,10 +39,7 @@ def lineEq(pt1, pt2):
     x1, y1 = pt1[:2]
     x2, y2 = pt2[:2]
     div = (x2-x1)
-    if div == 0:
-        m = 0
-    else:
-        m = (y2-y1)/div
+    m=0 if div==0 else (y2-y1)/div
     # y=mx+b => b=y-mx
     b = y1-m*x1
     return m, b
@@ -50,9 +47,7 @@ def lineEq(pt1, pt2):
 
 def calcLineX(m, b, y):
     # y=mx+b => mx=y-b => x=(y-b)/m
-    if m==0:
-        return 0
-    return (y-b)/m
+    return 0 if m == 0 else (y-b)/m
 
 
 def calcLineY(m, b, x):
