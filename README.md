@@ -40,149 +40,48 @@ draw.hPoly(im, (100,100), 50, color=(0,0,0), rotation=-90)
 
 ### Draw Triangle
 ~~~python
-import cv2
-import scripts.drawHelper as drw
-import scripts.osHelper as osh
-from scripts.colorHelper import *
+import scripts.nsdraw as draw
 
-im = cv2.imread(osh.getPath(__file__)+r'/media/im.png')
-
-h, w = im.shape[:2]
-cx, ch, of = w/2, h/2, h/18
-rc = randomColor
-
-drw.drawTriangle(im, (cx-cx/1.6, ch+of), ch/2, color=rc(), rotation=-90)
-drw.drawTriangle(im, (cx, ch-of), ch/2, color=rc(), rotation=-45, thickness=15)
-drw.drawTriangle(im, (cx+cx/1.6, ch-of), ch/2, color=rc(), thickness=30)
+draw.triangle(im, (100,100), 50, color=(0,0,0), rotation=-90)
 ~~~
 
 ![im](showcase/drawTriangle.png)
 
 ### Draw Line, Arrow and Multiline
 ~~~python
-import cv2
-import scripts.drawHelper as drw
-import scripts.osHelper as osh
-from scripts.colorHelper import *
+import scripts.nsdraw as draw
 
-im = cv2.imread(osh.getPath(__file__)+r'/media/im.png')
-
-h, w = im.shape[:2]
-cx, ch = w/2, h/2
-rc = randomColor
-
-drw.drawLine(im, (60, 303), (151, 40), color=rc(), hasArrow=True)
-drw.drawLine(im, (240, 307), (330, 40), color=rc(), hasArrow=False)
-
+draw.line(im, (240, 307), (330, 40), color=(0,0,0))
+# or
 pts = [(418, 303), (461, 195),  (539, 140), (520, 40)]
-drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_ARROW_NONE)
-#or
-drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_ARROW_END)
-#or
-drw.drawMultiLine(im, pts, color=rc(), arrowType=drw.MULTILINE_MULTIPLE_ARROW)
+draw.multiline(im, pts, color=(0,0,0), arrowType=drw.MULTILINE_ARROW_NONE)
 ~~~
+arrowType= drw.MULTILINE_ARROW_NONE   
+arrowType= drw.MULTILINE_ARROW_END   
+arrowType= drw.MULTILINE_MULTIPLE_ARROW   
 
 ![im](showcase/drawMultiLine.png)
 
 ### Draw Circles and Arcs
 ~~~python
-import cv2
-import scripts.drawHelper as drw
-import scripts.osHelper as osh
-from scripts.colorHelper import *
-from inspect import signature
+import scripts.nsdraw as draw
 
-im = cv2.imread(osh.getPath(__file__)+r'/media/im.png')
-
-h, w = im.shape[:2]
-ox, oh, cx, cy, o = w/4, h/4, w/2, h/2, (w/2)/1.6
-rc = randomColor
-
-drw.drawCircle(im, (cx-o, cy), h/14, color=rc(), thickness=2, arc=180, rotation=0)
-drw.drawCircle(im, (cx-o, cy), h/7, color=rc(), thickness=10, arc=90, rotation=-90)
-drw.drawCircle(im, (cx-o, cy), h/4, color=rc(), thickness=25, arc=270, rotation=-180)
-
-drw.drawCircle(im, (cx, cy), h/14, color=rc(), thickness=2)
-drw.drawCircle(im, (cx, cy), h/7, color=rc(), thickness=10)
-drw.drawCircle(im, (cx, cy), h/4, color=rc(), thickness=25)
-
-drw.drawCircle(im, (cx+o, cy), h/14, color=rc(), endLastLine=False, thickness=2, arc=180, rotation=0)
-drw.drawCircle(im, (cx+o, cy), h/7, color=rc(), endLastLine=False, thickness=10, arc=90, rotation=-90)
-drw.drawCircle(im, (cx+o, cy), h/4, color=rc(), endLastLine=False, thickness=25, arc=270, rotation=-180)
-
-
+draw.circle(im, (100, 100), 50, color=rc(), thickness=2, arc=180, rotation=0)
 ~~~
 
 ![im](showcase/drawArc.png)
 
-## OS Helper
+## Math
 |FIXME|
 
-## Color Helper
-### Random Color
-~~~python
-from scripts.colorHelper import *
-
-print(randomColor(min=0, max=255))
-print(randomLightColors())
-print(randomDarkColors())
-~~~
-
->(135, 231, 232)   
->(251, 207, 165)   
->(5, 121, 79)
-
-### Re-Map HSV Color
+## Array
 |FIXME|
 
-### Change Hue(Color) of image
-~~~python
-from scripts.colorHelper import *
-
-h1 = changeHue(im, hue=0)
-h2 = changeHue(im, hue=90)
-h3 = changeHue(im, hue=160)
-h4 = changeHue(im, hue=240)
-h5 = changeHue(im, hue=310)
-~~~
-![im](showcase/hue.png)
-
-### Change Saturation of image
-~~~python
-from scripts.colorHelper import *
-
-s1 = changeSaturation(im, sat=5)
-s2 = changeSaturation(im, sat=25)
-s3 = changeSaturation(im, sat=50)
-s4 = changeSaturation(im, sat=75)
-s5 = changeSaturation(im, sat=95)
-~~~
-![im](showcase/sat.png)
-
-### Change Brightness of image
-~~~python
-from scripts.colorHelper import *
-
-b1 = changeBrightness(im, val=15)
-b2 = changeBrightness(im, val=35)
-b3 = changeBrightness(im, val=55)
-b4 = changeBrightness(im, val=75)
-b5 = changeBrightness(im, val=100)
-~~~
-![im](showcase/bri.png)
-
-## Math Helper
-|FIXME|
-
-## Array Helper
-|FIXME|
-
-## Font Helper
+## Font
 |FIXME|
 
 ## Future works
-- [x] Draw arc
-- [x] Fix arrows of miltipleLines with the same pointer size
+- [ ] Draw arc
 - [ ] Make a font and font-wrapper
 - [ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
 - [ ] Draw shaped line, dashed line, dotted line in every draw function
