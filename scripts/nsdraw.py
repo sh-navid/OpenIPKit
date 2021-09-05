@@ -6,11 +6,11 @@
 #########################################################
 # Add preprocessors
 #########################################################
+import math
 import numpy as np
 import scripts.nsproc as proc
 import scripts.nsmath as nmth
 import scripts.nsarray as arr
-import math
 
 #########################################################
 # Constants
@@ -30,8 +30,8 @@ MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'M
 def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5):
     '''
     '''
-    t=thickness
-    kernel = proc.kernel((t, t),proc.KERNEL_TYPE_CIRCULAR)
+    t = thickness
+    kernel = proc.kernel((t, t), proc.KERNEL_TYPE_CIRCULAR)
 
     block = proc.merge(kernel, kernel, kernel)
     block[np.where(kernel != 0)] = color
@@ -42,7 +42,8 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5):
 
     def draw(x, y):
         roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
-        roi[np.where(kernel != 0)] =block[np.where(kernel != 0)]
+        con=np.where(kernel != 0)
+        roi[con] = block[con]
         im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
     scale = 1
@@ -162,9 +163,9 @@ def multiline(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNE
             deg = math.degrees(math.atan(dy/dx))
             if dx < 0:
                 deg -= 180
-            end=(last[0]+(dx/2), last[1]+(dy/2)) if c1 else pts[i]
+            end = (last[0]+(dx/2), last[1]+(dy/2)) if c1 else pts[i]
             triangle(im, end, thickness *
-                         2, rotation=deg, color=color, thickness=thickness)
+                     2, rotation=deg, color=color, thickness=thickness)
 
         last = pts[i]
 
@@ -176,10 +177,9 @@ def circle(im: np.ndarray, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAU
     Rebuild it using x2+y2=r2 later
     """
     hPoly(im, center, radius, rotation=rotation, arc=arc,
-                        endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
+          endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
 
 
 def triangle(im: np.ndarray, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     hPoly(im, center, radius, points=3, rotation=rotation,
-                        color=color, thickness=thickness)
-                        
+          color=color, thickness=thickness)

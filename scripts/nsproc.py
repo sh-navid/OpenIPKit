@@ -67,6 +67,9 @@ KERNEL_TYPE_CIRCULAR_FADE = 3
 
 
 def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
+    '''
+    FIXME: cant you use np.arange for KERNEL_TYPE_CIRCULAR ... !?
+    '''
     k = np.ones(size)
     if kerneltype == KERNEL_TYPE_RECT:
         return k
