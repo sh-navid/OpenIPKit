@@ -21,20 +21,9 @@ im = draw.grid(im)
 ### Draw Star
 
 ~~~python
-import cv2
-import scripts.drawHelper as drw
-import scripts.osHelper as osh
-from scripts.colorHelper import *
- 
-im = cv2.imread(osh.getPath(__file__)+r'/media/im.png')
+import scripts.nsdraw as draw
 
-h, w = im.shape[:2]
-cx, ch = w/2, h/2
-rc = randomColor
-
-drw.drawStar(im, (cx-cx/1.6, ch), ch/2, color=rc(), rotation=-90)
-drw.drawStar(im, (cx, ch), ch/2, color=rc(), rotation=-90, thickness=10, points=9)
-drw.drawStar(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickness=30)
+draw.triangle(im, (100, 100), 50, color=(0,0,0), rotation=-90)
 ~~~
 
 ![im](showcase/drawStar4.png)
@@ -42,20 +31,9 @@ drw.drawStar(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickness=30)
 ### Draw Homogeneous Polygon
 
 ~~~python
-import cv2
-import scripts.drawHelper as drw
-import scripts.osHelper as osh
-from scripts.colorHelper import *
- 
-im = cv2.imread(osh.getPath(__file__)+r'/media/im.png')
+import scripts.nsdraw as draw
 
-h, w = im.shape[:2]
-cx, ch = w/2, h/2
-rc = randomColor
-
-drw.drawHomogeneousPoly(im, (cx-cx/1.6, ch), ch/2, color=rc(), rotation=-90)
-drw.drawHomogeneousPoly(im, (cx, ch), ch/2, color=rc(), rotation=-90, thickness=10, points=9)
-drw.drawHomogeneousPoly(im, (cx+cx/1.6, ch), ch/2, color=rc(), points=15, thickness=30)
+draw.hPoly(im, (100,100), 50, color=(0,0,0), rotation=-90)
 ~~~
 
 ![im](showcase/drawHomogeneousPoly.png)
