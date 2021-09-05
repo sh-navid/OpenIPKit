@@ -45,7 +45,6 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5,aa=True):
     # print(kernel)
 
     con = np.where(kernel != 0)
-
     def draw(x, y):
         roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
         if aa:
