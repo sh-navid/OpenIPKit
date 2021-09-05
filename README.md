@@ -1,5 +1,5 @@
 # PyHelper
-This module is a set of helper functions for ImageProcessing, ComputerVision.
+This module is a set of helper functions for ImageProcessing and ComputerVision.
 
 
 ## Draw Functions
