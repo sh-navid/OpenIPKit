@@ -1,18 +1,12 @@
 # PyHelper
-~
-This module is a set of helper functions for OpenCV, ImageProcessing, ComputerVision and Python.
-~
-___
-
-**I decided to remove dependency from other modules and just make some extra functionality for image processing and computer vision from scratch.**
-___
+This module is a set of helper functions for ImageProcessing, ComputerVision.
 
 
 ## Draw Functions
 ### Draw Chess Grid
 ~~~python
 import scripts.nsdraw as draw
-im = draw.chessGrid(im)
+im = draw.grid(im)
 ~~~
 
 **Parameters**  
