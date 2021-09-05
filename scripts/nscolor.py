@@ -17,10 +17,6 @@ import scripts.nsarray as arr
 # CONSTANTS
 #########################################################
 
-HSV_MODE_IPKit_RANGE = 0
-HSV_MODE_OPENCV_RANGE = 1
-HSV_MODE_GRAPHICAL_SOFTWARE_RANGE = 2
-
 #########################################################
 # Functions
 #########################################################
@@ -39,6 +35,19 @@ def randomDarkColors():
 
 
 def NSC(im):
+    '''
+    I had trouble finding the border between nail and skin colors for a few days. 
+    That's why I decided to create my own color format called NSC. 
+    The first two letters are my name. I am working on this color algorithm. 
+    I am slowly optimizing its code.
+
+    I think I should completely separate the colors from the rest of the color format.
+    I want to make a mask from nails.
+    So in the end it does not matter if I can convert this format again with BGR,
+    but if possible, is better. 
+    So I made a flag for reversibility but I may delete it later. 
+    I'm thinking about Grayness and Illumination. Maybe they will change or remove later.
+    '''
     nsc = im.copy()
     nsc = conv(nsc, CONV_TYPE_BGR2NSC)
     (c, g, i) = proc.split(nsc)
@@ -61,41 +70,45 @@ def conv(im, convType):
         one=im/255
         b,g,r=proc.split(one)
 
+        M=np.max(b,g,r)
+        m=np.min(b,g,r)
+        ME=np.mean(b,g,r)
+        MD=np.median(b,g,r)
+       
+
 
         # NSC -> NS-COLOR -> Color, Grayness, Ilumination
         one=proc.merge(r, g, b)
-        return one*255  # h,s,v
+        return one*255
     elif convType == CONV_TYPE_NSC2BGR:
         
         return im
     return None
 
 
-def changeHue(im, hue=130, hsvMode=HSV_MODE_GRAPHICAL_SOFTWARE_RANGE):
-    if hsvMode == HSV_MODE_GRAPHICAL_SOFTWARE_RANGE:
-        hue = 180 * hue / 360
-    h, s, v = NSC(im)
-    h[:] = hue
-    hsv = proc.merge(h, s, v)
+def changeColor(im, color=130):
+    '''
+    Not working yet; and i'm not sure about backward compatibility yet
+    I want to push colors to c, i am not sure about g and i parameters yet
+    '''
+    c, g, i = NSC(im)
+    c[:] = color
+    hsv = proc.merge(c, g, i)
     bgr = conv(hsv, CONV_TYPE_NSC2BGR)
     return bgr
 
 
-def changeSaturation(im, sat=130, hsvMode=HSV_MODE_GRAPHICAL_SOFTWARE_RANGE):
-    if hsvMode == HSV_MODE_GRAPHICAL_SOFTWARE_RANGE:
-        sat = 255 * sat / 100
-    h, s, v = NSC(im)
-    s[:] = sat
-    hsv = proc.merge(h, s, v)
-    bgr = conv(hsv, CONV_TYPE_NSC2BGR)
+def changeGrayness(im, grayness=130):
+    c, g, i = NSC(im)
+    g[:] = grayness
+    nsc = proc.merge(c, g, i)
+    bgr = conv(nsc, CONV_TYPE_NSC2BGR)
     return bgr
 
 
-def changeBrightness(im, val=130, hsvMode=HSV_MODE_GRAPHICAL_SOFTWARE_RANGE):
-    if hsvMode == HSV_MODE_GRAPHICAL_SOFTWARE_RANGE:
-        val = 255 * val / 100
-    h, s, v = NSC(im)
-    v[:] = val
-    hsv = proc.merge(h, s, v)
-    bgr = conv(hsv, CONV_TYPE_NSC2BGR)
+def changeIlumination(im, ilumination=130):
+    c, g, i = NSC(im)
+    i[:] = ilumination
+    nsc = proc.merge(c, g, i)
+    bgr = conv(nsc, CONV_TYPE_NSC2BGR)
     return bgr
