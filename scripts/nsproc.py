@@ -50,8 +50,8 @@ def split(im):
     return c1, c2, c3
 
 
-def merge(c1, c2, c3):
-    return np.dstack((c1, c2, c3))
+def merge(channels:list):
+    return np.dstack(channels)
 
 
 def tinning(im):
