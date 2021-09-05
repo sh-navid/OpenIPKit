@@ -6,26 +6,20 @@
 #########################################################
 # Add preprocessors
 #########################################################
-import cv2
-import numpy as np
 import sys
+import numpy as np
+import scripts.backend as back
 
 #########################################################
 # Source code
 #########################################################
 
-im = cv2.imread(sys.path[0]+'/NSFreeFont.png')
-#im=cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
-#im = cv2.threshold(im, 225, 255, cv2.THRESH_BINARY)[1]
-#im = ~im
-
+im = back.imread(sys.path[0]+'/NSFreeFont.png')
 H, W = im.shape[:2]
 
 downscale = 5
-im = cv2.resize(im, (W//downscale, H//downscale))
+im = back.resize(im, (W//downscale, H//downscale))
 H, W = im.shape[:2]
-#im = cv2.threshold(im, 127, 255, cv2.THRESH_BINARY)[1]
-
 
 ROWS, COLS = 7, 6
 SW = W/COLS
@@ -60,17 +54,12 @@ dictList = {}
 for el in rawList:
     dictList[el.ch] = {'xi': el.xi, 'yi': el.yi}
 
-#print(dictList)
-
 for yi in range(0, ROWS):
     for xi in range(0, COLS):
         pt1 = (int(xi*SW), int(yi*SH))
         pt2 = (int(xi*SW+SW), int(yi*SH+SH))
-        #cv2.rectangle(im, pt1, pt2, (0, 255, 0), 1)
 
-#im = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
-cv2.imwrite(sys.path[0]+'/NSFreeFontProcessed.png', im)
-
+back.imwrite(sys.path[0]+'/NSFreeFontProcessed.png', im)
 
 def drawNSFreeFont(im2, pos, text):
     l = 0
@@ -92,5 +81,4 @@ def drawNSFreeFont(im2, pos, text):
 myIm = 127 * np.ones((300, 300, 3), dtype=np.uint8)
 drawNSFreeFont(myIm, (20, 130), "ORIGINAL")
 
-cv2.imshow('test', myIm)
-cv2.waitKey(0)
+back.imshow('test', myIm)

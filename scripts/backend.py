@@ -11,3 +11,5 @@ def imwrite(pth,im):
 def imshow(title,im):
     cv2.imshow(title,im)
     cv2.waitKey(0)
+
+def resize(im,newSize):
