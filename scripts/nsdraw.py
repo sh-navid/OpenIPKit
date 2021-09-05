@@ -41,7 +41,8 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5,aa=True):
     r1 = int(t/2)
     r2 = t-r1
 
-    print(kernel)
+    # FIXME: optimize the AA kernel later
+    # print(kernel)
 
     con = np.where(kernel != 0)
 
