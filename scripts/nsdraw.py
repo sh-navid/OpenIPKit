@@ -27,11 +27,12 @@ MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'M
 #########################################################
 
 
-def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5):
+def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5,aa=True):
     '''
     '''
     t = thickness
-    kernel = proc.kernel((t, t), proc.KERNEL_TYPE_CIRCULAR)
+    kType=proc.KERNEL_TYPE_CIRCULAR_FADE if aa else proc.KERNEL_TYPE_CIRCULAR
+    kernel = proc.kernel((t, t), kType)
 
     block = proc.merge(kernel, kernel, kernel)
     block[np.where(kernel != 0)] = color
@@ -40,7 +41,11 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5):
     r1 = int(t/2)
     r2 = t-r1
 
-    con=np.where(kernel != 0)
+    print(np.where(kernel <.5, 4,8))
+    print(kernel)
+
+    con = np.where(kernel != 0)
+
     def draw(x, y):
         roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
         roi[con] = block[con]
