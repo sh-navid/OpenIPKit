@@ -1,5 +1,6 @@
 import scripts.nsmath as nmth
 import numpy as np
+import math
 
 
 def fill(im, pos=(0, 0), color=(0, 0, 0), diff=0):
@@ -64,6 +65,7 @@ def ticking(im):
 KERNEL_TYPE_RECT = 1
 KERNEL_TYPE_CIRCULAR = 2
 KERNEL_TYPE_CIRCULAR_FADE = 3
+KERNEL_TYPE_CIRCULAR_EDGE_FADE=4
 
 
 def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
@@ -87,6 +89,14 @@ def kernel(size: tuple, kerneltype: int = KERNEL_TYPE_RECT):
         for i in range(0, size[0]):
             for j in range(0, size[1]):
                 k[i,j]/=(abs(cx-i)+abs(cy-j))+1
+                k[i,j]=float("{0:.1f}".format(k[i,j]))
+        return k
+    elif kerneltype == KERNEL_TYPE_CIRCULAR_EDGE_FADE:
+        k=kernel(size,KERNEL_TYPE_CIRCULAR)
+        cx, cy,s = size[0]//2, size[1]//2,math.ceil(size[0]+size[1])//6
+        for i in range(0, size[0]):
+            for j in range(0, size[1]):
+                k[i,j]/=((abs(cx-i)+abs(cy-j))/(s+1))+1
                 k[i,j]=float("{0:.1f}".format(k[i,j]))
         return k
     return None

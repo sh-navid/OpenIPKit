@@ -31,7 +31,7 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5,aa=True):
     '''
     '''
     t = thickness
-    kType=proc.KERNEL_TYPE_CIRCULAR_FADE if aa else proc.KERNEL_TYPE_CIRCULAR
+    kType=proc.KERNEL_TYPE_CIRCULAR_EDGE_FADE if aa else proc.KERNEL_TYPE_CIRCULAR
     kernel = proc.kernel((t, t), kType)
 
     block = proc.merge(kernel, kernel, kernel)
@@ -41,14 +41,17 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5,aa=True):
     r1 = int(t/2)
     r2 = t-r1
 
-    print(np.where(kernel <.5, 4,8))
     print(kernel)
 
     con = np.where(kernel != 0)
 
     def draw(x, y):
         roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
-        roi[con] = block[con]
+        if aa:
+            for c in [0,1,2]:
+                roi[:,:,c] = kernel*block[:,:,c]+(1-kernel)*roi[:,:,c]
+        else:
+            roi[con] = block[con]
         im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
     scale = 1
