@@ -40,9 +40,9 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5):
     r1 = int(t/2)
     r2 = t-r1
 
+    con=np.where(kernel != 0)
     def draw(x, y):
         roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
-        con=np.where(kernel != 0)
         roi[con] = block[con]
         im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
