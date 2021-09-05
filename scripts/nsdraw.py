@@ -42,7 +42,7 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5):
 
     def draw(x, y):
         roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
-        roi[np.where(kernel != 0)] = block[np.where(kernel != 0)]
+        roi[np.where(kernel != 0)] =block[np.where(kernel != 0)]
         im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
     scale = 1
@@ -93,7 +93,7 @@ def curve(im: np.ndarray):
     return im
 
 
-def chessGrid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 255, 255), thickness: int = 50):
+def grid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 255, 255), thickness: int = 50):
     '''
     '''
     # FIXME: check this in different sizes; does not work sometimes

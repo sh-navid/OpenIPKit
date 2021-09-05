@@ -6,19 +6,19 @@
 #########################################################
 # Add preprocessors
 #########################################################
-import cv2
 import sys
 import numpy as np
 from inspect import signature
 import scripts.nsproc as proc
 import scripts.nsdraw as draw
 import scripts.nscolor as nsc
+import scripts.backend as back
 
 #########################################################
 # Source code
 #########################################################
 
-im = cv2.imread(sys.path[0]+'/media/im.png')
+im = back.imread(sys.path[0]+'/media/im.png')
 
 h, w = im.shape[:2]
 ox, oh, cx, cy, o = w/4, h/4, w/2, h/2, (w/2)/1.6
@@ -34,5 +34,4 @@ draw.circle(im, (cx+o, cy), h/14, color=rc(), endLastLine=False, thickness=2, ar
 draw.circle(im, (cx+o, cy), h/7, color=rc(), endLastLine=False, thickness=10, arc=90, rotation=-90)
 draw.circle(im, (cx+o, cy), h/4, color=rc(), endLastLine=False, thickness=25, arc=270, rotation=-180)
 
-cv2.imshow('draw', im)
-cv2.waitKey(0)
+back.imshow('draw', im)
