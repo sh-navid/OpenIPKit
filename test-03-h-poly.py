@@ -21,12 +21,14 @@ import scripts.nssys as nss
 
 im = back.imread(sys.path[0]+'/media/im.png')
 
-h, w = im.shape[:2]
-cx, ch = w/2, h/2
-rc = nsc.randomColor
+def run():
+    h, w = im.shape[:2]
+    cx, ch = w/2, h/2
+    rc = nsc.randomColor
 
-draw.hPoly(im, (cx-cx/1.6, ch), ch/2, color=rc(), rotation=-90)
-draw.hPoly(im, (cx, ch), ch/2, color=rc(),rotation=-90, thickness=10, points=9)
-draw.hPoly(im, (cx+cx/1.6, ch), ch/2,color=rc(), points=15, thickness=30)
+    draw.hPoly(im, (cx-cx/1.6, ch), ch/2, color=rc(), rotation=-90)
+    draw.hPoly(im, (cx, ch), ch/2, color=rc(),rotation=-90, thickness=10, points=9)
+    draw.hPoly(im, (cx+cx/1.6, ch), ch/2,color=rc(), points=15, thickness=30)
 
+nss.execMonitor(run,True)
 back.imshow('Test', im)
