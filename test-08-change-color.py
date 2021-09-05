@@ -30,23 +30,23 @@ def run():
     global s1, s2, s3, s4, s5
     global b1, b2, b3, b4, b5
 
-    h1 = nsc.changeHue(im, hue=0)
-    h2 = nsc.changeHue(im, hue=90)
-    h3 = nsc.changeHue(im, hue=160)
-    h4 = nsc.changeHue(im, hue=240)
-    h5 = nsc.changeHue(im, hue=310)
+    h1 = nsc.changeColor(im, color=0)
+    h2 = nsc.changeColor(im, color=90)
+    h3 = nsc.changeColor(im, color=160)
+    h4 = nsc.changeColor(im, color=240)
+    h5 = nsc.changeColor(im, color=310)
 
-    s1 = nsc.changeSaturation(im, sat=5)
-    s2 = nsc.changeSaturation(im, sat=25)
-    s3 = nsc.changeSaturation(im, sat=50)
-    s4 = nsc.changeSaturation(im, sat=75)
-    s5 = nsc.changeSaturation(im, sat=95)
+    s1 = nsc.changeGrayness(im, grayness=5)
+    s2 = nsc.changeGrayness(im, grayness=25)
+    s3 = nsc.changeGrayness(im, grayness=50)
+    s4 = nsc.changeGrayness(im, grayness=75)
+    s5 = nsc.changeGrayness(im, grayness=95)
 
-    b1 = nsc.changeBrightness(im, val=15)
-    b2 = nsc.changeBrightness(im, val=35)
-    b3 = nsc.changeBrightness(im, val=55)
-    b4 = nsc.changeBrightness(im, val=75)
-    b5 = nsc.changeBrightness(im, val=100)
+    b1 = nsc.changeIlumination(im, ilumination=15)
+    b2 = nsc.changeIlumination(im, ilumination=35)
+    b3 = nsc.changeIlumination(im, ilumination=55)
+    b4 = nsc.changeIlumination(im, ilumination=75)
+    b5 = nsc.changeIlumination(im, ilumination=100)
 
 
 nss.execMonitor(run, True)
