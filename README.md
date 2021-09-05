@@ -56,9 +56,9 @@ draw.line(im, (240, 307), (330, 40), color=(0,0,0))
 pts = [(418, 303), (461, 195),  (539, 140), (520, 40)]
 draw.multiline(im, pts, color=(0,0,0), arrowType=drw.MULTILINE_ARROW_NONE)
 ~~~
-arrowType= drw.MULTILINE_ARROW_NONE   
-arrowType= drw.MULTILINE_ARROW_END   
-arrowType= drw.MULTILINE_MULTIPLE_ARROW   
+arrowType= draw.MULTILINE_ARROW_NONE   
+arrowType= draw.MULTILINE_ARROW_END   
+arrowType= draw.MULTILINE_MULTIPLE_ARROW   
 
 ![im](showcase/drawMultiLine.png)
 
