@@ -39,9 +39,6 @@ def randomDarkColors():
 
 
 def getHSV(im):
-    '''
-    DEPRECATED
-    '''
     hsv = im.copy()
     hsv = conv(hsv, CONV_TYPE_BGR2HSV)
     (h, s, v) = proc.split(hsv)
@@ -62,7 +59,19 @@ CONV_TYPE_HSV2BGR = 3
 
 
 def conv(im, convType):
-    pass
+    if convType==CONV_TYPE_BGR2HSV:
+        return im
+    elif convType==CONV_TYPE_HSV2BGR:
+        return im
+    return None
+
+
+def mapTo255(im):
+    return im/255
+
+
+def mapToOne(im):
+    return im*255
 
 
 def changeHue(im, hue=130, hsvMode=HSV_MODE_GRAPHICAL_SOFTWARE_RANGE):
