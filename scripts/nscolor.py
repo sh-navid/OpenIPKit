@@ -38,11 +38,11 @@ def randomDarkColors():
     return randomColor(0, 127)
 
 
-def getHSV(im):
-    hsv = im.copy()
-    hsv = conv(hsv, CONV_TYPE_BGR2HSV)
-    (h, s, v) = proc.split(hsv)
-    return h, s, v
+def NSC(im):
+    nsc = im.copy()
+    nsc = conv(nsc, CONV_TYPE_BGR2NSC)
+    (c, g, i) = proc.split(nsc)
+    return c, g, i
 
 
 def fixHSVRange(h, s, v):
@@ -52,53 +52,50 @@ def fixHSVRange(h, s, v):
     return (180 * h / 360, 255 * s / 100, 255 * v / 100)
 
 
-CONV_TYPE_BGR2HSV = 0
-CONV_TYPE_BGR2GRAY = 1
-CONV_TYPE_GRAY2BGR = 2
-CONV_TYPE_HSV2BGR = 3
+CONV_TYPE_BGR2NSC = 0 # NSC is my name + COLOR -> NS+Color
+CONV_TYPE_NSC2BGR = 3
 
 
 def conv(im, convType):
-    if convType==CONV_TYPE_BGR2HSV:
-        return im
-    elif convType==CONV_TYPE_HSV2BGR:
+    if convType == CONV_TYPE_BGR2NSC:
+        one=im/255
+        b,g,r=proc.split(one)
+
+
+        # NSC -> NS-COLOR -> Color, Grayness, Ilumination
+        one=proc.merge(r, g, b)
+        return one*255  # h,s,v
+    elif convType == CONV_TYPE_NSC2BGR:
+        
         return im
     return None
-
-
-def mapTo255(im):
-    return im/255
-
-
-def mapToOne(im):
-    return im*255
 
 
 def changeHue(im, hue=130, hsvMode=HSV_MODE_GRAPHICAL_SOFTWARE_RANGE):
     if hsvMode == HSV_MODE_GRAPHICAL_SOFTWARE_RANGE:
         hue = 180 * hue / 360
-    h, s, v = getHSV(im)
+    h, s, v = NSC(im)
     h[:] = hue
-    hsv = proc.merge([h, s, v])
-    bgr = conv(hsv, CONV_TYPE_HSV2BGR)
+    hsv = proc.merge(h, s, v)
+    bgr = conv(hsv, CONV_TYPE_NSC2BGR)
     return bgr
 
 
 def changeSaturation(im, sat=130, hsvMode=HSV_MODE_GRAPHICAL_SOFTWARE_RANGE):
     if hsvMode == HSV_MODE_GRAPHICAL_SOFTWARE_RANGE:
         sat = 255 * sat / 100
-    h, s, v = getHSV(im)
+    h, s, v = NSC(im)
     s[:] = sat
-    hsv = proc.merge([h, s, v])
-    bgr = conv(hsv, CONV_TYPE_HSV2BGR)
+    hsv = proc.merge(h, s, v)
+    bgr = conv(hsv, CONV_TYPE_NSC2BGR)
     return bgr
 
 
 def changeBrightness(im, val=130, hsvMode=HSV_MODE_GRAPHICAL_SOFTWARE_RANGE):
     if hsvMode == HSV_MODE_GRAPHICAL_SOFTWARE_RANGE:
         val = 255 * val / 100
-    h, s, v = getHSV(im)
+    h, s, v = NSC(im)
     v[:] = val
-    hsv = proc.merge([h, s, v])
-    bgr = conv(hsv, CONV_TYPE_HSV2BGR)
+    hsv = proc.merge(h, s, v)
+    bgr = conv(hsv, CONV_TYPE_NSC2BGR)
     return bgr
