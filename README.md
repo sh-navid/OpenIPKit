@@ -224,8 +224,8 @@ b5 = changeBrightness(im, val=100)
 
 
 ## License
-License of this repository [file](/LICENSE).
+License of this repository [LICENSE](/LICENSE).
 
 
-NOTICE: In this project, two different modules are used as backend. Please consider the licenses of these two modules before using this repository. The link to the description of each is as follows, so the license of each can be checked and viewed.
-[OpenCV](https://github.com/opencv), [OpenCV-Python](https://github.com/opencv/opencv-python), [NumPy](https://numpy.org/about/)
+NOTICE: In this project, two different modules are used as backend. Please consider the licenses of these two modules before using this repository.
+[OpenCV](https://github.com/opencv), [NumPy](https://numpy.org/about/)
