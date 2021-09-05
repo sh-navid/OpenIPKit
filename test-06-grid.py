@@ -20,8 +20,11 @@ import scripts.nssys as nss
 #########################################################
 im = back.imread(sys.path[0]+'/media/im.png')
 
-im = draw.grid(im)
-im = draw.grid(im, color1=(127,0,255),color2=(200,200,200),thickness=20)
-print(signature(draw.grid))
+def run():
+    global im
+    im = draw.grid(im)
+    im = draw.grid(im, color1=(127,0,255),color2=(200,200,200),thickness=20)
+    print(signature(draw.grid))
 
-back.imshow('draw', im)
+nss.execMonitor(run,True)
+back.imshow('Test', im)
