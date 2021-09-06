@@ -20,14 +20,24 @@ def simpleCategoryLearn(imList,size,catNo):
     '''
     off=size//BLOCK_SIZE
     samples=[]
-    
+    for im in imList:
+        sample=[]
+        for r in off:
+            for c in off:
+                pass
+        samples.append(sample)
+
+    '''...'''
     return {'size':size,'catNo':catNo,'samples':samples}
 
-def simpleCategoryDetect(im,model):
+def simpleCategoryDetect(im,model,checkMirror=False,checkUpsideDown=False,checkRotated=False):
+    '''
+    model: {'size':size,'catNo':catNo,'samples':samples}
+    '''
     size=model['size']
     catNo=model['catNo']
     samples=model['samples']
     off=size//BLOCK_SIZE
     bestProbability=0
-
+    '''...'''
     return bestProbability
