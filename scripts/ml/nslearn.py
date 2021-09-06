@@ -8,15 +8,26 @@ import scripts.nsarray as arr
 import scripts.nscolor as nsc
 import scripts.backend as back
 
+'''
+I want to make a very siple machine learning algorithm from scratch
+'''
+
+BLOCK_SIZE=4
 def simpleCategoryLearn(imList,size,catNo):
     '''
     imList: [im1, im2, ..., imN]
     size: 8, 16, 32, 64
     '''
+    off=size//BLOCK_SIZE
     samples=[]
     
     return {'size':size,'catNo':catNo,'samples':samples}
 
 def simpleCategoryDetect(im,model):
-    
-    pass
+    size=model['size']
+    catNo=model['catNo']
+    samples=model['samples']
+    off=size//BLOCK_SIZE
+    bestProbability=0
+
+    return bestProbability
