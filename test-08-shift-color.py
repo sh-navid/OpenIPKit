@@ -30,17 +30,17 @@ def run():
     global b1, b2, b3
     global c1, c2, c3
 
-    a1 = nsc.shiftChannel(im, channel=0, shift=0)
-    a2 = nsc.shiftChannel(im, channel=0, shift=100)
-    a3 = nsc.shiftChannel(im, channel=0, shift=200)
+    a1 = nsc.changeChannel(im, channel=0, newValue=0)
+    a2 = nsc.changeChannel(im, channel=0, newValue=100)
+    a3 = nsc.changeChannel(im, channel=0, newValue=200)
 
-    b1 = nsc.shiftChannel(im, channel=1, shift=0)
-    b2 = nsc.shiftChannel(im, channel=1, shift=100)
-    b3 = nsc.shiftChannel(im, channel=1, shift=200)
+    b1 = nsc.changeChannel(im, channel=1, newValue=0)
+    b2 = nsc.changeChannel(im, channel=1, newValue=100)
+    b3 = nsc.changeChannel(im, channel=1, newValue=200)
 
-    c1 = nsc.shiftChannel(im, channel=2, shift=0)
-    c2 = nsc.shiftChannel(im, channel=2, shift=100)
-    c3 = nsc.shiftChannel(im, channel=2, shift=200)
+    c1 = nsc.changeChannel(im, channel=2, newValue=0)
+    c2 = nsc.changeChannel(im, channel=2, newValue=100)
+    c3 = nsc.changeChannel(im, channel=2, newValue=200)
 
 
 nss.execMonitor(run, True)
