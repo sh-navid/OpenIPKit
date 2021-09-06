@@ -34,8 +34,7 @@ def randomDarkColors():
     return randomColor(0, 127)
 
 
-
-def shiftChannel(im, channel=0,shift=30):
+def changeChannel(im, channel=0,newValue=30):
     channels = np.array(proc.split(im))
-    channels[:][channel] = shift
+    channels[:][channel] = newValue
     return proc.merge(channels)
