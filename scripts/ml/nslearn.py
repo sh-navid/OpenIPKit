@@ -1,3 +1,13 @@
+#########################################################
+# Author: sh-navid
+#########################################################
+'''
+I want to make a very simple machine learning algorithm
+from scratch
+'''
+#########################################################
+# Add preprocessors
+#########################################################
 import sys
 import math
 import numpy as np
@@ -8,10 +18,9 @@ import scripts.nsarray as arr
 import scripts.nscolor as nsc
 import scripts.backend as back
 
-'''
-I want to make a very siple machine learning algorithm from scratch
-'''
-
+#########################################################
+# Source code
+#########################################################
 def generateSimpleSample(im,sampleSize,blockSquareSize):
     sample = []
     off = sampleSize//blockSquareSize
