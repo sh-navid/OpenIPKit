@@ -20,13 +20,21 @@ import scripts.ml.nslearn as learn
 #########################################################
 # Source code
 #########################################################
-test=sys.path[0]+'/media/samples1/test'
-train=sys.path[0]+'/media/samples1/train'
+test = sys.path[0]+'/media/samples1/test'
+train = sys.path[0]+'/media/samples1/train'
 
+models = []
+for trainSetIdx in range(1, 5):
+    trainList = []
+    for tainSampleNum in range(1, 13):
+        trainList.append(back.imread(
+            train+f'/{trainSetIdx}/{tainSampleNum}.png'))
+    model = learn.simpleCategoryLearn(trainList, 8, 4)
+    models.append(model)
 
-for i in range(1,5):
-    trainList=[]
-    for num in range(1,13):
-        trainList.append(back.imread(train+f'/{i}/{num}.png'))
-    learn.simpleCategoryLearn(trainList,8,4)
-
+for testIdx in range(1, 5):
+    im = back.imread(test+f'/{testIdx}.png')
+    print()
+    for modelIdx in range(1, 5):
+        probability = learn.simpleCategoryDetect(im, models[modelIdx-1])
+        print(f'Testcase of number {testIdx} --- can be number {modelIdx}: {probability}%')
