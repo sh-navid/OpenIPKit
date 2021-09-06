@@ -12,37 +12,36 @@ import scripts.backend as back
 I want to make a very siple machine learning algorithm from scratch
 '''
 
-BLOCK_SIZE = 4
 
-
-def simpleCategoryLearn(imList, size, catNo):
+def simpleCategoryLearn(imList, sampleSize=8, blockSquareSize=4):
     '''
     imList: [im1, im2, ..., imN]
     size: 8, 16, 32, 64
     '''
-    off = size//BLOCK_SIZE
+    off = sampleSize//blockSquareSize
     samples = []
     for im in imList:
-        im = back.resize(im, (size, size))
+        im = back.resize(im, (sampleSize, sampleSize))
         sample = []
-        for r in off:
-            for c in off:
-                y, x = r*BLOCK_SIZE, c*BLOCK_SIZE
-                block = im[y:y+BLOCK_SIZE, x:x+BLOCK_SIZE]
-                sample.append(np.median(block))
+        for r in range(0, off):
+            for c in range(0, off):
+                y, x = r*blockSquareSize, c*blockSquareSize
+                block = im[y:y+blockSquareSize, x:x+blockSquareSize]
+                sample.append(np.mean(block))
                 pass
         samples.append(sample)
-    return {'size': size, 'catNo': catNo, 'samples': samples}
+        print(sample)
+    return {'sampleSize': sampleSize, 'blockSquareSize': blockSquareSize, 'samples': samples}
 
 
 def simpleCategoryDetect(im, model, checkMirror=False, checkUpsideDown=False, checkRotated=False):
     '''
-    model: {'size':size,'catNo':catNo,'samples':samples}
+    model: {'sampleSize': sampleSize,'blockSquareSize':blockSquareSize, 'samples': samples}
     '''
-    size = model['size']
-    catNo = model['catNo']
+    sampleSize = model['sampleSize']
+    blockSquareSize = model['blockSquareSize']
     samples = model['samples']
-    off = size//BLOCK_SIZE
+    off = sampleSize//blockSquareSize
     bestProbability = 0
     '''...'''
     return bestProbability

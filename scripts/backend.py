@@ -13,4 +13,4 @@ def imshow(title,im):
     cv2.waitKey(0)
 
 def resize(im,newSize):
-    cv2.resize(im, newSize)
+    return cv2.resize(im, newSize)
