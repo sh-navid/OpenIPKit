@@ -34,13 +34,15 @@ def simpleCategoryLearn(imList, sampleSize=8, blockSquareSize=4):
         im = back.resize(im, (sampleSize, sampleSize))
         sample=generateSimpleSample(im,sampleSize,blockSquareSize)
         samples.append(sample)
-        print(sample)
+        #print(sample)
     return {'sampleSize': sampleSize, 'blockSquareSize': blockSquareSize, 'samples': samples}
 
 
 def simpleCategoryDetect(im, model, checkMirror=False, checkUpsideDown=False, checkRotated=False):
     '''
     model: {'sampleSize': sampleSize,'blockSquareSize':blockSquareSize, 'samples': samples}
+    return distance between sample and models
+    if returns 0 it means identical match
     '''
     sampleSize = model['sampleSize']
     blockSquareSize = model['blockSquareSize']
