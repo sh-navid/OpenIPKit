@@ -88,7 +88,6 @@ draw.circle(im, (100, 100), 50, color=rc(), thickness=2, arc=180, rotation=0)
 - [ ] Draw bullet and other markers on every point of multiline function
 - [ ] Make a simpler structure for put small image in big image
 - [ ] Make a simpler structure for rotate and transform images
-- [ ] Make a simple tool to find HSV range
 - [ ] Make a simple FeatureMatcher
 - [ ] Add some features to console table maker
 - [ ] Make 3D renderer for image slices
