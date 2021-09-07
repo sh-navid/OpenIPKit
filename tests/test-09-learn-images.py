@@ -27,12 +27,12 @@ for trainSetIdx in range(1, 5):
     for tainSampleNum in range(1, 13):
         trainList.append(back.imread(
             train+f'/{trainSetIdx}/{tainSampleNum}.png'))
-    model = learn.simpleCategoryLearn(trainList, 32, 16)#32-8
+    model = learn.simpleLearn(trainList, 32, 16)#32-8
     models.append(model)
 
 for testIdx in range(1, 5):
     im = back.imread(test+f'/{testIdx}.png')
     print()
     for modelIdx in range(1, 5):
-        distBetweenModelAndTestSample = learn.simpleCategoryDetect(im, models[modelIdx-1])
+        distBetweenModelAndTestSample = learn.simpleDetect(im, models[modelIdx-1])
         print(f'Testcase of number {testIdx} --- can be number {modelIdx}: {distBetweenModelAndTestSample}')

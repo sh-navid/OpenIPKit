@@ -11,17 +11,19 @@ from scratch
 import sys
 import math
 import numpy as np
-import scripts.nssys as nss
-import scripts.nsproc as proc
-import scripts.nsmath as nmth
-import scripts.nsarray as arr
-import scripts.nscolor as nsc
-import scripts.backend as back
+import openipkit.nssys as nss
+import openipkit.nsproc as proc
+import openipkit.nsmath as nmth
+import openipkit.nsarray as arr
+import openipkit.nscolor as nsc
+import openipkit.backend as back
 
 #########################################################
 # Source code
 #########################################################
-def generateSimpleSample(im,sampleSize,blockSquareSize):
+
+
+def generateSimpleSample(im, sampleSize, blockSquareSize):
     sample = []
     off = sampleSize//blockSquareSize
     for r in range(0, off):
@@ -32,22 +34,22 @@ def generateSimpleSample(im,sampleSize,blockSquareSize):
     return sample
 
 
-def simpleCategoryLearn(imList, sampleSize=8, blockSquareSize=4):
+def simpleLearn(imList, sampleSize=8, blockSquareSize=4):
     '''
     imList: [im1, im2, ..., imN]
     size: 8, 16, 32, 64
     '''
-    
+
     samples = []
     for im in imList:
         im = back.resize(im, (sampleSize, sampleSize))
-        sample=generateSimpleSample(im,sampleSize,blockSquareSize)
+        sample = generateSimpleSample(im, sampleSize, blockSquareSize)
         samples.append(sample)
-        #print(sample)
+        # print(sample)
     return {'sampleSize': sampleSize, 'blockSquareSize': blockSquareSize, 'samples': samples}
 
 
-def simpleCategoryDetect(im, model, checkMirror=False, checkUpsideDown=False, checkRotated=False):
+def simpleDetect(im, model, checkMirror=False, checkUpsideDown=False, checkRotated=False):
     '''
     model: {'sampleSize': sampleSize,'blockSquareSize':blockSquareSize, 'samples': samples}
     return distance between sample and models
@@ -57,13 +59,13 @@ def simpleCategoryDetect(im, model, checkMirror=False, checkUpsideDown=False, ch
     blockSquareSize = model['blockSquareSize']
     samples = model['samples']
     im = back.resize(im, (sampleSize, sampleSize))
-    current=generateSimpleSample(im,sampleSize,blockSquareSize)
+    current = generateSimpleSample(im, sampleSize, blockSquareSize)
 
-    allDists=[]
+    allDists = []
     for sample in samples:
-        dist=0
-        for i in range(0,len(sample)):
-            dist+=abs(current[i]-sample[i])
+        dist = 0
+        for i in range(0, len(sample)):
+            dist += abs(current[i]-sample[i])
         allDists.append(dist)
 
     return np.median(allDists)
