@@ -9,9 +9,9 @@
 import random
 import math
 import numpy as np
-import scripts.nsproc as proc
-import scripts.nsmath as nmth
-import scripts.nsarray as arr
+import openipkit.nsproc as proc
+import openipkit.nsmath as nmth
+import openipkit.nsarray as arr
 
 #########################################################
 # CONSTANTS

@@ -1,5 +1,5 @@
 import cv2
-import scripts.exphandle as exp
+import openipkit.exphandle as exp
 
 # This is backend; default backend id OpenCV
 # Please check OpenCV License before use
