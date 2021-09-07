@@ -23,7 +23,7 @@ import openipkit.backend as back
 #########################################################
 
 
-def generateSimpleSample(im, sampleSize, blockSquareSize):
+def __simpleSample(im, sampleSize, blockSquareSize):
     sample = []
     off = sampleSize//blockSquareSize
     for r in range(0, off):
@@ -43,7 +43,7 @@ def simpleLearn(imList, sampleSize=8, blockSquareSize=4):
     samples = []
     for im in imList:
         im = back.resize(im, (sampleSize, sampleSize))
-        sample = generateSimpleSample(im, sampleSize, blockSquareSize)
+        sample = __simpleSample(im, sampleSize, blockSquareSize)
         samples.append(sample)
         # print(sample)
     return {'sampleSize': sampleSize, 'blockSquareSize': blockSquareSize, 'samples': samples}
@@ -59,7 +59,7 @@ def simpleDetect(im, model, checkMirror=False, checkUpsideDown=False, checkRotat
     blockSquareSize = model['blockSquareSize']
     samples = model['samples']
     im = back.resize(im, (sampleSize, sampleSize))
-    current = generateSimpleSample(im, sampleSize, blockSquareSize)
+    current = __simpleSample(im, sampleSize, blockSquareSize)
 
     allDists = []
     for sample in samples:
