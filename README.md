@@ -96,7 +96,7 @@ draw.circle(im, (100, 100), 50, color=rc(), thickness=2, arc=180, rotation=0)
 |FIXME|
 
 ## Future works
-- [ ] Draw arc
+- [x] Draw arc
 - [ ] Make a font and font-wrapper
 - [ ] Add a simple vector font, something that i can rotate, sheer, resize and ...
 - [ ] Draw shaped line, dashed line, dotted line in every draw function
