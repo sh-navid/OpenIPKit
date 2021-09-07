@@ -106,11 +106,11 @@ def rText(im: np.ndarray):
     return im
 
 
-def curve(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    multiline(im, pts, thickness=thickness, color=color)
+def curve(im: np.ndarray, pts, slices=31, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS,helperLines=True,debug=False):
+    if helperLines:
+        multiline(im, pts, thickness=thickness, color=(100, 255, 100))
     pt1, pt2, pt3 = pts[:3]
 
-    slices = 6
     #d12 = nmth.dist(pt1, pt2)/slices
     #d23 = nmth.dist(pt2, pt3)/slices
 
@@ -120,8 +120,8 @@ def curve(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     m1, b1 = nmth.lineEq(pt1, pt2)
     m2, b2 = nmth.lineEq(pt2, pt3)
 
+    curve = [pt1]
     lastLine = None
-    lastPoint = pt1
     for i in range(0, slices-1):
         x1 = int(pt1[0]+(i*d12))
         y1 = int(nmth.calcLineY(m1, b1, x1))
@@ -132,13 +132,16 @@ def curve(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
         newLine = ((x1, y1), (x2, y2))
         if lastLine != None:
             pt = nmth.line_line_intersection(lastLine, newLine)
-            line(im, lastPoint, pt, (0, 0, 0), 11)
-            circle(im,pt,5,color=(100,100,255))
-            lastPoint = pt
-            print(lastLine,newLine,lastPoint)
+            if debug:
+                circle(im, pt, 5, color=(100, 100, 255))
+            curve.append(pt)
 
         lastLine = newLine
-        multiline(im, newLine, thickness=thickness, color=color)
+        if debug:
+            multiline(im, newLine, thickness=thickness, color=(255, 100, 100))
+
+    curve.append(pt3)
+    multiline(im, curve, thickness=thickness, color=color)
 
 
 def grid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 255, 255), thickness: int = 50):
