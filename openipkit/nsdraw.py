@@ -106,8 +106,29 @@ def rText(im: np.ndarray):
     return im
 
 
-def curve(im: np.ndarray):
-    return im
+def curve(im: np.ndarray,pts,color=DEFAULT_COLOR,thickness=DEFAULT_TICKNESS):
+    '''
+    moved from test-draw-curve.py
+    i remove this file later
+    '''
+    multiline(im, pts, thickness=5)
+
+    pt1,pt2,pt3=pts[:3]
+
+    slices = 13
+    d12 = nmth.dist(pt1, pt2)/slices
+    d23 = nmth.dist(pt2, pt3)/slices
+
+    m1, b1 = nmth.lineEq(pt1, pt2)
+    m2, b2 = nmth.lineEq(pt2, pt3)
+    for i in range(0, slices-1):
+        x1 = int(pt1[0]+(i*d12))
+        y1 = int(nmth.calcLineY(m1, b1, x1))
+
+        x2 = int(pt2[0]+(i*d23))
+        y2 = int(nmth.calcLineY(m2, b2, x2))
+
+        multiline(im, [(x1, y1), (x2, y2)], thickness=5, color=(200, 30, 100))
 
 
 def grid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 255, 255), thickness: int = 50):

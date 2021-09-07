@@ -6,14 +6,15 @@
 #########################################################
 # Add preprocessors
 #########################################################
-import openipkit.ml.nslearn as learn
-import openipkit.backend as back
-import openipkit.nscolor as nsc
-import openipkit.nsdraw as draw
-import openipkit.nsproc as proc
-import openipkit.nssys as nss
 import sys
+import numpy as np
 sys.path.append('.')
+import openipkit.nssys as nss
+import openipkit.nsproc as proc
+import openipkit.nsdraw as draw
+import openipkit.nscolor as nsc
+import openipkit.backend as back
+import openipkit.ml.nslearn as learn
 
 #########################################################
 # Source code
