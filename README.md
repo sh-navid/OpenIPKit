@@ -1,4 +1,4 @@
-# IPKit
+# OpenIPKit
 This module is a set of helper functions for ImageProcessing and ComputerVision.
 
 
