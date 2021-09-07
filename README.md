@@ -6,20 +6,13 @@ This module is a set of helper functions for ImageProcessing and ComputerVision.
 Machine learning algorithms are both complex and require a powerful computer. I wrote a simple algorithm for training, modeling, and object recognition. In special circumstances, it can be trained with a smaller number of samples and diagnose quickly. To test numbers from 1 to 4, I trained it with Persian number trainset and test these models.
 
 ~~~python
-models = []
-#Train models for each number
-for tSet in range(1, 5):
-    imList = [back.imread(train+f'/{tSet}/{tId}.png') for tId in range(1, 13)]
-    model = learn.simpleLearn(imList, 32, 16)#32-8
-    models.append(model)
+import openipkit.ml.nslearn as learn
 
-#Test models
-for tId in range(1, 5):
-    im = back.imread(test+f'/{tId}.png')
-    print()
-    for mId in range(1, 5):
-        dist = learn.simpleDetect(im, models[mId-1])
-        print(f'Testcase of number {tId} --- can be number {mId}: {dist}')
+# You can make a separate model for each category (In this case for each number)
+model = learn.simpleLearn(trainImageList, 32, 16)
+
+# Finally, you can compare the distance between the models. A lower number indicates more similarity but there is a possibility of error.
+dist = learn.simpleDetect(im, model)        
 ~~~
 
 ![im](showcase/train_showcase.png)
