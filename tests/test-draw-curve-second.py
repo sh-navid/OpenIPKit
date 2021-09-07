@@ -6,15 +6,14 @@
 #########################################################
 # Add preprocessors
 #########################################################
-import openipkit.ml.nslearn as learn
-import openipkit.backend as back
-import openipkit.nscolor as nsc
-import openipkit.nsdraw as draw
-import openipkit.nsproc as proc
-import openipkit.nsmath as nmth
-import openipkit.nssys as nss
 import sys
 sys.path.append('.')
+import openipkit.nssys as nss
+import openipkit.nsproc as proc
+import openipkit.nsdraw as draw
+import openipkit.nscolor as nsc
+import openipkit.backend as back
+import openipkit.ml.nslearn as learn
 
 #########################################################
 # Source code
@@ -28,7 +27,7 @@ def run():
     rc = nsc.randomColor
 
     pt1, pt2, pt3 = (ox, h-h/8), (cx, oh), (w-ox, h-h/8)
-    draw.curve(im, [pt1, pt2, pt3])
+    draw.curve(im, [pt1, pt2, pt3],thickness=4)
 
 
 nss.execMonitor(run, True)

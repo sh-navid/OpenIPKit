@@ -106,18 +106,16 @@ def rText(im: np.ndarray):
     return im
 
 
-def curve(im: np.ndarray,pts,color=DEFAULT_COLOR,thickness=DEFAULT_TICKNESS):
-    '''
-    moved from test-draw-curve.py
-    i remove this file later
-    '''
-    multiline(im, pts, thickness=5)
+def curve(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
+    multiline(im, pts, thickness=thickness, color=color)
+    pt1, pt2, pt3 = pts[:3]
 
-    pt1,pt2,pt3=pts[:3]
+    slices = 31
+    #d12 = nmth.dist(pt1, pt2)/slices
+    #d23 = nmth.dist(pt2, pt3)/slices
 
-    slices = 13
-    d12 = nmth.dist(pt1, pt2)/slices
-    d23 = nmth.dist(pt2, pt3)/slices
+    d12 = nmth.absDXY(pt1, pt2)[0]/slices
+    d23 = nmth.absDXY(pt2, pt3)[0]/slices
 
     m1, b1 = nmth.lineEq(pt1, pt2)
     m2, b2 = nmth.lineEq(pt2, pt3)
@@ -128,7 +126,7 @@ def curve(im: np.ndarray,pts,color=DEFAULT_COLOR,thickness=DEFAULT_TICKNESS):
         x2 = int(pt2[0]+(i*d23))
         y2 = int(nmth.calcLineY(m2, b2, x2))
 
-        multiline(im, [(x1, y1), (x2, y2)], thickness=5, color=(200, 30, 100))
+        multiline(im, [(x1, y1), (x2, y2)], thickness=thickness, color=color)
 
 
 def grid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 255, 255), thickness: int = 50):
@@ -221,7 +219,7 @@ def circle(im: np.ndarray, center, radius, startAngle=0, endAngle=360, endLastLi
         else:
             roi[filter] = block[filter]
         im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
-    
+
     def __xy(deg):
         '''
         FIXME: move it to nsmath
@@ -229,16 +227,16 @@ def circle(im: np.ndarray, center, radius, startAngle=0, endAngle=360, endLastLi
         x = radius*math.cos(math.radians(deg))
         y = radius*math.sin(math.radians(deg))
         x, y = int(center[0]+x), int(center[1]+y)
-        return x,y
+        return x, y
 
     for deg in range(startAngle, endAngle, 1):
-        x,y=__xy(deg)
+        x, y = __xy(deg)
         __draw(x, y)
 
     if endLastLine:
-        x,y=__xy(startAngle)
-        x2,y2=__xy(endAngle)
-        line(im,(x,y),(x2,y2),color,thickness,aa)
+        x, y = __xy(startAngle)
+        x2, y2 = __xy(endAngle)
+        line(im, (x, y), (x2, y2), color, thickness, aa)
 
 
 def triangle(im: np.ndarray, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
