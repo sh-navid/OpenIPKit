@@ -34,7 +34,7 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5,aa=True):
     kType=proc.KERNEL_TYPE_CIRCULAR_EDGE_FADE if aa else proc.KERNEL_TYPE_CIRCULAR
     kernel = proc.kernel((t, t), kType)
 
-    block = proc.merge(kernel, kernel, kernel)
+    block = proc.merge([kernel, kernel, kernel])
     block[np.where(kernel != 0)] = color
     m, b = nmth.lineEq(pt1, pt2)
     dx, dy = nmth.dXY(pt1, pt2)
