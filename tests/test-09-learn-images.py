@@ -22,17 +22,16 @@ test = sys.path[0]+'/media/samples1/test'
 train = sys.path[0]+'/media/samples1/train'
 
 models = []
-for trainSetIdx in range(1, 5):
-    trainList = []
-    for tainSampleNum in range(1, 13):
-        trainList.append(back.imread(
-            train+f'/{trainSetIdx}/{tainSampleNum}.png'))
-    model = learn.simpleLearn(trainList, 32, 16)#32-8
+#Train Models
+for tSet in range(1, 5):
+    imList = [back.imread(train+f'/{tSet}/{tId}.png') for tId in range(1, 13)]
+    model = learn.simpleLearn(imList, 32, 16)#32-8
     models.append(model)
 
-for testIdx in range(1, 5):
-    im = back.imread(test+f'/{testIdx}.png')
+#Test Models
+for tId in range(1, 5):
+    im = back.imread(test+f'/{tId}.png')
     print()
-    for modelIdx in range(1, 5):
-        distBetweenModelAndTestSample = learn.simpleDetect(im, models[modelIdx-1])
-        print(f'Testcase of number {testIdx} --- can be number {modelIdx}: {distBetweenModelAndTestSample}')
+    for mId in range(1, 5):
+        dist = learn.simpleDetect(im, models[mId-1])
+        print(f'Testcase of number {tId} --- can be number {mId}: {dist}')
