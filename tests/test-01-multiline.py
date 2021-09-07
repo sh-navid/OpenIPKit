@@ -19,8 +19,6 @@ import scripts.ml.nslearn as learn
 #########################################################
 # Source code
 #########################################################
-back.backend_engine=2
-
 im = back.imread(sys.path[0]+'/media/im.png')
 
 def run():
