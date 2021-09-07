@@ -89,9 +89,6 @@ draw.circle(im, (100, 100), 50, color=rc(), thickness=2, arc=180, rotation=0)
 ## Math
 |FIXME|
 
-## Array
-|FIXME|
-
 ## Font
 |FIXME|
 
