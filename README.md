@@ -3,7 +3,7 @@ This module is a set of helper functions for ImageProcessing and ComputerVision.
 
 ## ML
 ### Simple Trainer and Detector
-Machine learning algorithms are both complex and require a powerful computer. I wrote a simple algorithm for training, modeling, and image recognition. In special circumstances, it can be trained with a smaller number of samples and diagnose quickly. To test numbers from 1 to 4, I taught him Persian and tested him.
+Machine learning algorithms are both complex and require a powerful computer. I wrote a simple algorithm for training, modeling, and object recognition. In special circumstances, it can be trained with a smaller number of samples and diagnose quickly. To test numbers from 1 to 4, I trained it with Persian number trainset and test these models.
 
 ~~~python
 models = []
