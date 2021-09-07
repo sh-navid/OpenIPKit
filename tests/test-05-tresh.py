@@ -7,6 +7,7 @@
 # Add preprocessors
 #########################################################
 import sys
+import numpy as np
 sys.path.append('.')
 import openipkit.nssys as nss
 import openipkit.nsproc as proc

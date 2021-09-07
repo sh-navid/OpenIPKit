@@ -24,7 +24,6 @@ def run():
     global im
     im = draw.grid(im)
     im = draw.grid(im, color1=(127,0,255),color2=(200,200,200),thickness=20)
-    print(signature(draw.grid))
 
 nss.execMonitor(run,True)
 back.imshow('Test', im)

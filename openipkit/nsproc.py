@@ -47,7 +47,10 @@ def toGray(im, graymode=GRAY_MODE_A, floatmode=True):
 
 
 def toBGR(im):
-    return merge(im, im, im)
+    '''
+    im should be 1 channel
+    '''
+    return merge([im, im, im])
 
 
 def split(im):

@@ -27,32 +27,39 @@ MULTILINE_ARROW_NONE, MULTILINE_ARROW_END, MULTILINE_MULTIPLE_ARROW = 'MLAN', 'M
 #########################################################
 
 
-def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5,aa=True):
-    '''
-    '''
-    t = thickness
-    kType=proc.KERNEL_TYPE_CIRCULAR_EDGE_FADE if aa else proc.KERNEL_TYPE_CIRCULAR
-    kernel = proc.kernel((t, t), kType)
-
+def __makeKernel(thickness, color, aa):
+    kType = proc.KERNEL_TYPE_CIRCULAR_EDGE_FADE if aa else proc.KERNEL_TYPE_CIRCULAR
+    kernel = proc.kernel((thickness, thickness), kType)
     block = proc.merge([kernel, kernel, kernel])
     block[np.where(kernel != 0)] = color
+    filter = np.where(kernel != 0)
+    r1 = int(thickness/2)
+    r2 = thickness-r1
+    return kernel, block, filter, r1, r2
+
+
+def line(im: np.ndarray, pt1, pt2, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, aa=True):
+    '''
+    '''
+    kernel, block, filter, r1, r2 = __makeKernel(thickness, color, aa)
+
     m, b = nmth.lineEq(pt1, pt2)
     dx, dy = nmth.dXY(pt1, pt2)
-    r1 = int(t/2)
-    r2 = t-r1
 
     # FIXME: you can make STATIC kernels and add to list every new kenel and do not make them every time
     # FIXME: optimize the AA kernel later
     # print(kernel)
 
-    con = np.where(kernel != 0)
-    def draw(x, y):
+    def __draw(x, y):
+        '''
+        FIXME: make this function global - this is duplicated in nsdraw.circle
+        '''
         roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
         if aa:
-            for c in [0,1,2]:
-                roi[:,:,c] = kernel*block[:,:,c]+(1-kernel)*roi[:,:,c]
+            for c in [0, 1, 2]:
+                roi[:, :, c] = kernel*block[:, :, c]+(1-kernel)*roi[:, :, c]
         else:
-            roi[con] = block[con]
+            roi[filter] = block[filter]
         im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
 
     scale = 1
@@ -60,12 +67,12 @@ def line(im: np.ndarray, pt1, pt2, color=(0, 0, 0), thickness=5,aa=True):
         for i in range(0, int(dx*scale), 1 if dx > 0 else -1):
             x = pt1[0]+i/scale
             y = nmth.calcLineY(m, b, x)
-            draw(x, y)
+            __draw(x, y)
     else:
         for i in range(0, int(dy*scale), 1 if dy > 0 else -1):
             y = pt1[1]+i/scale
             x = nmth.calcLineX(m, b, y)
-            draw(x, y)
+            __draw(x, y)
     return im
 
 
@@ -179,14 +186,35 @@ def multiline(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNE
         last = pts[i]
 
 
-def circle(im: np.ndarray, center, radius, rotation=-DEFAULT_ROTATION, arc=DEFAULT_ARC, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
-    """
-    DEPRECATED
-    This is not optimized
-    Rebuild it using x2+y2=r2 later
-    """
-    hPoly(im, center, radius, rotation=rotation, arc=arc,
-          endLastLine=endLastLine, points=DEFAULT_ARC, color=color, thickness=thickness)
+def circle(im: np.ndarray, center, radius, startAngle=0, endAngle=360, endLastLine=True, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS, aa=True):
+    kernel, block, filter, r1, r2 = __makeKernel(thickness, color, aa)
+
+    def __draw(x, y):
+        '''
+        FIXME: make this function global - this is duplicated in nsdraw.line
+        '''
+        roi = im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)]
+        if aa:
+            for c in [0, 1, 2]:
+                roi[:, :, c] = kernel*block[:, :, c]+(1-kernel)*roi[:, :, c]
+        else:
+            roi[filter] = block[filter]
+        im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
+    
+    def __xy(deg):
+        x = radius*math.cos(math.radians(deg))
+        y = radius*math.sin(math.radians(deg))
+        x, y = int(center[0]+x), int(center[1]+y)
+        return x,y
+
+
+    for deg in range(startAngle, endAngle, 1):
+        x,y=__xy(deg)
+        __draw(x, y)
+    if endLastLine:
+        x,y=__xy(startAngle)
+        x2,y2=__xy(endAngle)
+        line(im,(x,y),(x2,y2),color,thickness,aa)
 
 
 def triangle(im: np.ndarray, center, radius, rotation=-DEFAULT_ROTATION, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
