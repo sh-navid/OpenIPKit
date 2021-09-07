@@ -202,15 +202,18 @@ def circle(im: np.ndarray, center, radius, startAngle=0, endAngle=360, endLastLi
         im[int(y-r1):int(y+r2), int(x-r1):int(x+r2)] = roi
     
     def __xy(deg):
+        '''
+        FIXME: move it to nsmath
+        '''
         x = radius*math.cos(math.radians(deg))
         y = radius*math.sin(math.radians(deg))
         x, y = int(center[0]+x), int(center[1]+y)
         return x,y
 
-
     for deg in range(startAngle, endAngle, 1):
         x,y=__xy(deg)
         __draw(x, y)
+
     if endLastLine:
         x,y=__xy(startAngle)
         x2,y2=__xy(endAngle)

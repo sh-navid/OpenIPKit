@@ -8,7 +8,8 @@
 #########################################################
 import sys
 import numpy as np
-import scripts.backend as back
+sys.path.append('.')
+import openipkit.backend as back
 
 #########################################################
 # Source code
@@ -78,7 +79,6 @@ def drawNSFreeFont(im2, pos, text):
         l += SWI
 
 
-myIm = 127 * np.ones((300, 300, 3), dtype=np.uint8)
+myIm = 127 * np.ones((300, 300, 4), dtype=np.uint8)
 drawNSFreeFont(myIm, (20, 130), "ORIGINAL")
-
 back.imshow('test', myIm)

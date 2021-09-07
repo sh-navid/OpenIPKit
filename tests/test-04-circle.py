@@ -6,20 +6,21 @@
 #########################################################
 # Add preprocessors
 #########################################################
+import openipkit.ml.nslearn as learn
+import openipkit.backend as back
+import openipkit.nscolor as nsc
+import openipkit.nsdraw as draw
+import openipkit.nsproc as proc
+import openipkit.nssys as nss
 import sys
 sys.path.append('.')
-import openipkit.nssys as nss
-import openipkit.nsproc as proc
-import openipkit.nsdraw as draw
-import openipkit.nscolor as nsc
-import openipkit.backend as back
-import openipkit.ml.nslearn as learn
 
 #########################################################
 # Source code
 #########################################################
 
 im = back.imread(sys.path[0]+'/media/im.png')
+
 
 def run():
     h, w = im.shape[:2]
@@ -32,9 +33,13 @@ def run():
     draw.circle(im, (cx, cy), h/14, color=rc(), thickness=5)
     draw.circle(im, (cx, cy), h/7, color=rc(), thickness=10)
     draw.circle(im, (cx, cy), h/4, color=rc(), thickness=25)
-    draw.circle(im, (cx+o, cy), h/14, color=rc(), endLastLine=False, thickness=5, startAngle=45, endAngle=180)
-    draw.circle(im, (cx+o, cy), h/7, color=rc(), endLastLine=False, thickness=10, startAngle=45, endAngle=90)
-    draw.circle(im, (cx+o, cy), h/4, color=rc(), endLastLine=False, thickness=25, startAngle=0, endAngle=270)
+    draw.circle(im, (cx+o, cy), h/14, color=rc(), endLastLine=False,
+                thickness=5, startAngle=45, endAngle=180)
+    draw.circle(im, (cx+o, cy), h/7, color=rc(), endLastLine=False,
+                thickness=10, startAngle=45, endAngle=90)
+    draw.circle(im, (cx+o, cy), h/4, color=rc(), endLastLine=False,
+                thickness=25, startAngle=0, endAngle=270)
 
-nss.execMonitor(run,True)
+
+nss.execMonitor(run, True)
 back.imshow('Test', im)
