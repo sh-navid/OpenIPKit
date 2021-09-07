@@ -108,7 +108,7 @@ def rText(im: np.ndarray):
 
 def curve(im: np.ndarray, pts, slices=31, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS,helperLines=True,debug=False):
     if helperLines:
-        multiline(im, pts, thickness=thickness, color=(100, 255, 100))
+        multiline(im, pts, thickness=DEFAULT_TICKNESS, color=(100, 255, 100))
     pt1, pt2, pt3 = pts[:3]
 
     #d12 = nmth.dist(pt1, pt2)/slices

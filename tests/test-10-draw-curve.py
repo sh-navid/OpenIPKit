@@ -29,6 +29,13 @@ def run():
     pt1, pt2, pt3 = (ox, h-h/8), (cx, oh), (w-ox, h-h/8)
     draw.curve(im, [pt1, pt2, pt3], thickness=4)
 
+    off=50
+    draw.curve(im, [(12,h-12-1), (24,12), (w-12-1,12)], thickness=20,slices=13)
+
+    # FIXME: 2 buggy samples; fix them later
+    # draw.curve(im, [(12,h-12-1), (24,12), (w-12-1,12)], thickness=100,slices=13)
+    # draw.curve(im, [(12,h-12-1), (24,12), (w-12-1,12)], thickness=100,slices=31)
+
 
 nss.execMonitor(run, True)
 back.imshow('Test', im)
