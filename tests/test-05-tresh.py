@@ -7,6 +7,7 @@
 # Add preprocessors
 #########################################################
 import sys
+[sys.path.append(pth) for pth in '.']
 import numpy as np
 from inspect import signature
 import scripts.nsproc as proc

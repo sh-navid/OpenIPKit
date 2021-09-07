@@ -7,14 +7,14 @@
 # Add preprocessors
 #########################################################
 import sys
-import math
+[sys.path.append(pth) for pth in '.']
 import numpy as np
-import scripts.nssys as nss
+from inspect import signature
 import scripts.nsproc as proc
-import scripts.nsmath as nmth
-import scripts.nsarray as arr
+import scripts.nsdraw as draw
 import scripts.nscolor as nsc
 import scripts.backend as back
+import scripts.nssys as nss
 import scripts.ml.nslearn as learn
 
 #########################################################
