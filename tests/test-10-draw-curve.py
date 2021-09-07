@@ -27,7 +27,7 @@ def run():
     rc = nsc.randomColor
 
     pt1, pt2, pt3 = (ox, h-h/8), (cx, oh), (w-ox, h-h/8)
-    draw.curve(im, [pt1, pt2, pt3],thickness=4)
+    draw.curve(im, [pt1, pt2, pt3], thickness=4)
 
 
 nss.execMonitor(run, True)

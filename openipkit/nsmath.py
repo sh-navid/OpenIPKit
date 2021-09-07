@@ -50,3 +50,19 @@ def calcLineX(m, b, y):
 
 def calcLineY(m, b, x):
     return m*x+b
+
+
+def line_line_intersection(line1, line2):
+    '''
+    pt=(x,y)
+    line1=(pt1,pt2)
+    line2=(pt3,pt4)
+    return (x,y)
+    '''
+    a, c = lineEq(line1[0], line1[1])
+    b, d = lineEq(line2[0], line2[1])
+
+    ab = (a-b)
+    x = (d-c)/ab if ab != 0 else (d-c)
+    y = (a*x)+c
+    return (x, y)  # intersection of 2 lines

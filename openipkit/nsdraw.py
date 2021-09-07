@@ -110,7 +110,7 @@ def curve(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
     multiline(im, pts, thickness=thickness, color=color)
     pt1, pt2, pt3 = pts[:3]
 
-    slices = 31
+    slices = 6
     #d12 = nmth.dist(pt1, pt2)/slices
     #d23 = nmth.dist(pt2, pt3)/slices
 
@@ -119,6 +119,9 @@ def curve(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
 
     m1, b1 = nmth.lineEq(pt1, pt2)
     m2, b2 = nmth.lineEq(pt2, pt3)
+
+    lastLine = None
+    lastPoint = pt1
     for i in range(0, slices-1):
         x1 = int(pt1[0]+(i*d12))
         y1 = int(nmth.calcLineY(m1, b1, x1))
@@ -126,7 +129,16 @@ def curve(im: np.ndarray, pts, color=DEFAULT_COLOR, thickness=DEFAULT_TICKNESS):
         x2 = int(pt2[0]+(i*d23))
         y2 = int(nmth.calcLineY(m2, b2, x2))
 
-        multiline(im, [(x1, y1), (x2, y2)], thickness=thickness, color=color)
+        newLine = ((x1, y1), (x2, y2))
+        if lastLine != None:
+            pt = nmth.line_line_intersection(lastLine, newLine)
+            line(im, lastPoint, pt, (0, 0, 0), 11)
+            circle(im,pt,5,color=(100,100,255))
+            lastPoint = pt
+            print(lastLine,newLine,lastPoint)
+
+        lastLine = newLine
+        multiline(im, newLine, thickness=thickness, color=color)
 
 
 def grid(im: np.ndarray, color1: tuple = (0, 0, 0), color2: tuple = (255, 255, 255), thickness: int = 50):
