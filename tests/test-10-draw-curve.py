@@ -20,7 +20,6 @@ import openipkit.ml.nslearn as learn
 #########################################################
 im = back.imread(sys.path[0]+'/media/im.png')
 
-
 def run():
     h, w = im.shape[:2]
     ox, oh, cx = w/4, h/4, w/2

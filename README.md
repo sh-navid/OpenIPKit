@@ -107,6 +107,8 @@ draw.circle(im, (100, 100), 50, color=rc(), thickness=2, arc=180, rotation=0)
 - [ ] Add some features to console table maker
 - [ ] Make 3D renderer for image slices
 
+- [ ] Make a stitcher algorithm 
+
 
 ## License
 License of this repository [LICENSE](/LICENSE).
